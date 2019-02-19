@@ -35,6 +35,9 @@
 <li> Fausto Daniel Luje Condor - fd.luje.2018@alumnos.urjc.es - Dani45</li>
 </ul>
 
+**Diagrama de clases:**
+
+![Diagrama de clases](C:\Users\Toñi\Documents\AGUS\UNIVERSIDAD\3 AÑO 2 CUATRI\Desarrollo de aplicaciones distribuidas\Práctica\diagramaClasesDAD.jpg "Diagrama de clases principal")
 **Descripción de las pantallas principales:** (a falta de mejorar)
 
 <li> Libro: Se puede buscar los libros que hay en la biblioteca por diferentes filtros: título y categoría </li>
