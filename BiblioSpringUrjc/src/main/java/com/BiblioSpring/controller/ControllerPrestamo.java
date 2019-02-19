@@ -1,4 +1,4 @@
-package com.BiblioSpring;
+package com.BiblioSpring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ControllerPrestamo {
 
 	@RequestMapping("/Prestamo")
-	public String padre(Model model) {
-		// model.addAttribute("name", "padre");
+	public String Presamo(Model model) {
 		return "Prestamo";
 	}
 }
