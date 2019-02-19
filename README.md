@@ -34,3 +34,11 @@
 <li> Chengjian Li - c.li3.2016@alumnos.urjc.es - Oscarli1797</li>
 <li> Fausto Daniel Luje Condor - fd.luje.2018@alumnos.urjc.es - Dani45</li>
 </ul>
+
+**Descripción de las pantallas principales:** (a falta de mejorar)
+
+<li> Libro: Se puede buscar los libros que hay en la biblioteca por diferentes filtros: título y categoría </li>
+<li>Usuario: Ingresas a la aplicación mediane un LogIn en el que se tiene que escribir los datos (nombre y contraseña) para acceder.</li>
+<li>Categoría:Consulta todos los libros de la biblioteca repartidos en categorías para una mayor facilidad de uso</li>
+<li>Préstamo: Accede a la posibilidad de entrar en el espacio personal del usuario premium para renovar el carné anual, cambiar los datos personales, etc.</li>
+<li>Alternativa: Consulta los fanzines, revistas y películas que hay en la biblioteca. </li>
