@@ -37,7 +37,9 @@
 
 **Diagrama de clases:**
 
-![Diagrama de clases](Users\Toñi\Documents\AGUS\UNIVERSIDAD\3 AÑO 2 CUATRI\Desarrollo de aplicaciones distribuidas\Práctica\diagramaClasesDAD.jpg "Diagrama de clases principal")
+**Modelo Entidad-Relación:**
+
+
 **Descripción de las pantallas principales:** (a falta de mejorar)
 
 <li> Libro: Se puede buscar los libros que hay en la biblioteca por diferentes filtros: título y categoría </li>
