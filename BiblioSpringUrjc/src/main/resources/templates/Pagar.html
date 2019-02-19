@@ -1,0 +1,17 @@
+<html>
+<body>
+
+	{{#anuncios}}
+	<a href="anuncio/{{id}}">{{nombre}} {{asunto}}</a><br>
+	{{/anuncios}}  
+
+	<p>Nombre: {{anuncio.nombre}}</p>
+	<p>Asunto: {{anuncio.numCuenta}}</p>
+	<p>Deuda: {{anuncio.deuda}}</p>
+	
+	<p> </p>
+	<input type='submit' value='Pagar'/>
+	
+	<a href="/usuarioPrivado">Volver a mi espacio personal</a>
+</body>
+</html>
