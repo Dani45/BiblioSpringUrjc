@@ -37,6 +37,8 @@
 
 **Diagrama de clases:**
 
+!(urjclogo.jpg)
+
 **Modelo Entidad-Relación:**
 
 
