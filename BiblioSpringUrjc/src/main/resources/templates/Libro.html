@@ -83,13 +83,13 @@
 					<div class="col-lg-12">
 						<form action="#" class="d-md-flex justify-content-between">
 							<select>
-								<option value="1">All</option>
-								<option value="2">Books</option>
-								<option value="1">Ebooks</option>
-							</select> <input type="text" placeholder="Search Title,author,ISBN"
+								<option value="1">Categorias</option> {{#categorias}}
+								<option value="2">{{area}}</option> {{/categorias}}
+
+							</select> <input type="text" placeholder="Buscar Titulo,Autor,ISBN"
 								onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'Search Keyword'" required>
-							<button type="submit" class="template-btn">find books</button>
+								onblur="this.placeholder = 'Buscar Titulo'" required>
+							<button type="submit" class="template-btn">Buscar Libro</button>
 						</form>
 					</div>
 				</div>
@@ -116,7 +116,8 @@
 							<div class="slide-img book1">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-										<li><a href="/Libro/1">LA SOCIEDAD DE LOS SOÑADORES INVOLUNTARIOS</a></li>
+										<li><a href="/Libro/1">LA SOCIEDAD DE LOS SOÑADORES
+												INVOLUNTARIOS</a></li>
 										<h5>AGUALUSA, JOSÉ EDUARDO</h5>
 									</div>
 								</div>
@@ -168,7 +169,7 @@
 							<div class="slide-img book3">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-									<li><a href="/Libro/3">ASESINOS DE SERIES</a></li>
+										<h3>ASESINOS DE SERIES</h3>
 										<h5>SANCHEZ, ROBERTO</h5>
 									</div>
 								</div>
@@ -184,7 +185,7 @@
 							<div class="slide-img book4">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-									<li><a href="/Libro/4">ALEACIÓN DE LEY</a></li>
+										<h3>ALEACIÓN DE LEY</h3>
 										<h5>SANDERSON, BRANDON</h5>
 									</div>
 								</div>
@@ -221,7 +222,7 @@
 							<div class="slide-img book5">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-									<li><a href="/Libro/5">LA LEYENDA DE LA ISLA SIN VOZ</a></li>
+										<h3>LA LEYENDA DE LA ISLA SIN VOZ</h3>
 										<h5>MONTFORT, VANESSA</h5>
 									</div>
 								</div>
@@ -236,7 +237,7 @@
 							<div class="slide-img book6">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-									<li><a href="/Libro/6">SECRETOS IMPERFECTOS</a></li>
+										<h3>SECRETOS IMPERFECTOS</h3>
 										<h5>HJORTH,MICHAEL</h5>
 									</div>
 								</div>
@@ -273,7 +274,7 @@
 							<div class="slide-img book7">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-									<li><a href="/Libro/7">BLUE</a></li>
+										<h3>BLUE</h3>
 										<h5>STEEL, DANIELLE</h5>
 									</div>
 								</div>
@@ -288,7 +289,7 @@
 							<div class="slide-img book8">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-									<li><a href="/Libro/8">MÁS DE TI</a></li>
+										<h3>MÁS DE TI</h3>
 										<h5>SHERIDAN, MIA</h5>
 									</div>
 								</div>
@@ -324,7 +325,7 @@
 							<div class="slide-img book9">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-										<li><a href="/Libro/9">EL CEREBRO DEL INVERSOR</a></li>
+										<h3>EL CEREBRO DEL INVERSOR</h3>
 										<h5>BERMEJO, PEDRO</h5>
 									</div>
 								</div>
@@ -340,7 +341,7 @@
 							<div class="slide-img book10">
 								<div class="hover-state">
 									<div class="hover-text text-center">
-										<li><a href="/Libro/10">¿QUIÉN SE HA LLEVADO MI MÁSTER?</a></li>
+										<h3>¿QUIÉN SE HA LLEVADO MI MÁSTER?</h3>
 										<h5>FUENTES, TOMÁS</h5>
 									</div>
 								</div>
@@ -369,12 +370,6 @@
 							<h3 class="mb-4">Mejora BiblioSpring</h3>
 							<p class="mb-4">Envíanos tu opinión sobre la web y ayúdanos a
 								mejorar.</p>
-							<form action="#">
-								<input type="email" placeholder="Escribe aquí"
-									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Escribe aquí'" required>
-								<button type="submit" class="template-btn">Enviar</button>
-							</form>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-6">

@@ -1,0 +1,28 @@
+<html>
+<body>
+
+
+	<h2>Lista de asuntos</h2>
+
+	<table>
+		<tr>
+			<th>IdContacto</th>
+			<th>nombre</th>
+			<th>correo</th>
+			<th>asunto</th>
+			<th>comentario</th>
+		</tr>
+		{{#contactos}}
+		<tr>
+			<td>{{idContacto}}</td>
+			<td>{{nombre}}</td>
+			<td>{{correo}}</td>
+			<td>{{asunto}}</td>
+			<td>{{comentario}}</td>
+		</tr>
+		{{/contactos}}
+	</table>
+
+	<a href="/Contacto">Volver a Contacto</a>
+</body>
+</html>

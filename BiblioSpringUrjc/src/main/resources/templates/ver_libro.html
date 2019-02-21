@@ -1,0 +1,29 @@
+<html>
+<body>
+
+
+	<h2>Lista de Libro</h2>
+
+	<table>
+		<tr>
+
+			<th>nombre</th>
+			<th>autor</th>
+			<th>lugarPublicacion</th>
+			<th>fechaPublicacion</th>
+
+			<th></th>
+		</tr>
+		{{#libros}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{autor}}</td>
+			<td>{{lugarPublicacion}}</td>
+			<td>{{fechaPublicacion}}</td>
+		</tr>
+		{{/libros}}
+	</table>
+
+	<a href="/Libro">Volver a Libro</a>
+</body>
+</html>

@@ -67,11 +67,9 @@
 					<div class="jobs-tab tab-item">
 						<ul>
 							<li class="active">Todas</li>
-							<li>Literatura</li>
-							<li>Geografía e Historia</li>
-							<li>Informática</li>
-							<li>Deportes</li>
-							<li>Biología</li>
+							 {{#categorias}}
+							<li>{{area}}</li> 
+							{{/categorias}}
 						</ul>
 					</div>
 				</div>
@@ -158,22 +156,10 @@
 					<div class="sidebar mt-5 mt-lg-0">
 						<div class="single-item mb-4">
 							<h4 class="mb-4">Temáticas de libros</h4>
-							<a href="#"
-								class="sidebar-btn d-flex justify-content-between mb-3"> <span>Informática</span>
+							{{#categorias}} <a href="#"
+								class="sidebar-btn d-flex justify-content-between mb-3"> <span>{{area}}</span>
 								<span class="text-right">x libros</span>
-							</a> <a href="#"
-								class="sidebar-btn d-flex justify-content-between mb-3"> <span>Geografía
-									e Historia</span> <span class="text-right">x libros</span>
-							</a> <a href="#"
-								class="sidebar-btn d-flex justify-content-between mb-3"> <span>Literatura</span>
-								<span class="text-right">x libros</span>
-							</a> <a href="#"
-								class="sidebar-btn d-flex justify-content-between mb-3"> <span>Deportes</span>
-								<span class="text-right">x libros</span>
-							</a> <a href="#"
-								class="sidebar-btn d-flex justify-content-between mb-3"> <span>Biología</span>
-								<span class="text-right">x libros</span>
-							</a>
+							</a> {{/categorias}}
 						</div>
 						<div class="single-item mb-4">
 							<h4 class="mb-4">Épocas de publicación</h4>
@@ -243,12 +229,6 @@
 							<h3 class="mb-4">Mejora BiblioSpring</h3>
 							<p class="mb-4">Envíanos tu opinión sobre la web y ayúdanos a
 								mejorar.</p>
-							<form action="#">
-								<input type="email" placeholder="Escribe aquí"
-									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Escribe aquí'" required>
-								<button type="submit" class="template-btn">Enviar</button>
-							</form>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-6">
