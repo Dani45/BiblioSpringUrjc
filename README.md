@@ -37,7 +37,7 @@
 
 **Diagrama de clases:**
 
-!(/C:/Users/Toñi/Documents/AGUS/UNIVERSIDAD/3 AÑO 2 CUATRI/Desarrollo de aplicaciones distribuidas/Práctica/diagramaClasesDAD.jpg)
+!(bibliotecaWebUrjc_DAD/diagramaClasesDAD.jpg)
 
 **Modelo Entidad-Relación:**
 
