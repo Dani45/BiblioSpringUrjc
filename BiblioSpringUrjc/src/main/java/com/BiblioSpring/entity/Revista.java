@@ -1,4 +1,4 @@
-package com.ejemplo.entity;
+package com.BiblioSpring.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

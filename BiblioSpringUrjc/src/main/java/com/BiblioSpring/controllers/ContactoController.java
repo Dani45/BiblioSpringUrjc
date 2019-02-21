@@ -1,4 +1,4 @@
-package com.ejemplo.controllers;
+package com.BiblioSpring.controllers;
 
 import javax.annotation.PostConstruct;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ejemplo.entity.Contacto;
-import com.ejemplo.repository.ContactosRepository;
+import com.BiblioSpring.entity.Contacto;
+import com.BiblioSpring.repository.ContactosRepository;
 
 @Controller
 

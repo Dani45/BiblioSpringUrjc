@@ -1,4 +1,4 @@
-package com.ejemplo;
+package com.BiblioSpring;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

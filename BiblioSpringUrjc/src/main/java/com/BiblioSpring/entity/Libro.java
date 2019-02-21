@@ -1,4 +1,4 @@
-package com.ejemplo.entity;
+package com.BiblioSpring.entity;
 
 import java.util.Date;
 
