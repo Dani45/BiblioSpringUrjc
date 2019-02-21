@@ -37,7 +37,9 @@
 
 **Diagrama de clases:**
 
-!(bibliotecaWebUrjc_DAD/diagramaClasesDAD.jpg)
+!(
+        bibliotecaWebUrjc_DAD/diagramaClasesDAD.jpg
+      )
 
 **Modelo Entidad-Relación:**
 
