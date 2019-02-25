@@ -37,7 +37,8 @@
 
 **Diagrama de clases:**
 
-![UML](UML FASE2 BIBLIOSPRING.png)            
+<img src="
+        bibliotecaWebUrjc_DAD/UML FASE2 BIBLIOSPRING.png" alt="UML"/>         
 
 **Modelo Entidad-Relación:**
 
