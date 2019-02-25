@@ -42,7 +42,7 @@
       )
       
 
-bibliotecaWebUrjc_DAD/UML FASE2 BIBLIOSPRING.png
+        bibliotecaWebUrjc_DAD/UML FASE2 BIBLIOSPRING.png
             
 
 **Modelo Entidad-Relación:**
