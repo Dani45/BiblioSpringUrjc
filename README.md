@@ -35,17 +35,18 @@
 <li> Fausto Daniel Luje Condor - fd.luje.2018@alumnos.urjc.es - Dani45</li>
 </ul>
 
+**Modelo UML:**
+
+![UML](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/UML_FASE2_BIBLIOSPRING.png?raw=true)    
+
 **Diagrama de clases:**
 
-
-![Lo que sea](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/UML_FASE2_BIBLIOSPRING.png?raw=true)
+![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/diagramaClasesDAD.jpg?raw=true)
       
-
-      
-
 **Modelo Entidad-Relación:**
 
-
+![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/MODELO E-R.png?raw=true)
+      
 **Descripción de las pantallas principales:** (a falta de mejorar)
 
 <li> Libro: Se puede buscar los libros que hay en la biblioteca por diferentes filtros: título y categoría </li>
