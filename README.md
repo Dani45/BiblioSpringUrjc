@@ -37,7 +37,9 @@
 
 **Diagrama de clases:**
 
-![Preview](https://raw.githubusercontent.com/agustinlopezg/bibliotecaWebUrjc_DAD/UML FASE2 BIBLIOSPRING.png) 
+
+(https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/UML_FASE2_BIBLIOSPRING.png?raw=true)
+      
 
       
 
