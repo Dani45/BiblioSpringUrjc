@@ -45,8 +45,8 @@
       
 **Modelo Entidad-Relación:**
 
-![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/MODELO E-R.png?raw=true)
-      
+![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/MODELO_E_R.png?raw=true)
+     
 **Descripción de las pantallas principales:** (a falta de mejorar)
 
 <li> Libro: Se puede buscar los libros que hay en la biblioteca por diferentes filtros: título y categoría </li>
