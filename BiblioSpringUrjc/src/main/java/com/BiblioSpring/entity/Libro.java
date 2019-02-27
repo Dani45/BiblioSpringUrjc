@@ -1,26 +1,65 @@
 package com.BiblioSpring.entity;
 
 import java.util.Date;
-
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
+@Table(name = "Libro")
 public class Libro {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idLibro")
 	private long idLibro;
-	@Column
+
+	@Column(name = "nombre")
 	private String nombre;
-	@Column
+	@Column(name = "autor")
 	private String autor;
-	@Column
+	@Column(name = "lugarPublicacion")
 	private String lugarPublicacion;
-	@Column
-	private Date fechaPublicacion;
+	@Column(name = "fechaPublicacion")
+	private Date fechaPublicacion = new Date();
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "libro_categoria", joinColumns = { @JoinColumn(name = "idLibro") }, inverseJoinColumns = {
+			@JoinColumn(name = "idCategoria") })
+	private Set<Categoria> categorias = new HashSet<Categoria>();
+
+	public Libro() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Libro(String nombre, String autor, String lugarPublicacion, Date fechaPublicacion) {
+		super();
+		this.nombre = nombre;
+		this.autor = autor;
+		this.lugarPublicacion = lugarPublicacion;
+		this.fechaPublicacion = fechaPublicacion;
+	}
+
+	public Libro(String nombre, String autor, String lugarPublicacion, Date fechaPublicacion,
+			Set<Categoria> categorias) {
+		super();
+		this.nombre = nombre;
+		this.autor = autor;
+		this.lugarPublicacion = lugarPublicacion;
+		this.fechaPublicacion = fechaPublicacion;
+		this.categorias = categorias;
+	}
 
 	public long getIdLibro() {
 		return idLibro;
@@ -62,19 +101,21 @@ public class Libro {
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public Libro(String nombre, String autor, String lugarPublicacion, Date fechaPublicacion) {
-		super();
-		this.nombre = nombre;
-		this.autor = autor;
-		this.lugarPublicacion = lugarPublicacion;
-		this.fechaPublicacion = fechaPublicacion;
+	public Set<Categoria> getCategorias() {
+		return categorias;
 	}
 
-	public Libro() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Libro [idLibro=" + idLibro + ", nombre=" + nombre + ", autor=" + autor + ", lugarPublicacion="
+				+ lugarPublicacion + ", fechaPublicacion=" + fechaPublicacion + ", categorias=" + categorias
+				+ ", getIdLibro()=" + getIdLibro() + ", getNombre()=" + getNombre() + ", getAutor()=" + getAutor()
+				+ ", getLugarPublicacion()=" + getLugarPublicacion() + ", getFechaPublicacion()="
+				+ getFechaPublicacion() + ", getCategorias()=" + getCategorias() + "]";
+	}
 
 }

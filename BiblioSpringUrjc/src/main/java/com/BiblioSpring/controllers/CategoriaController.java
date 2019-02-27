@@ -1,7 +1,5 @@
 package com.BiblioSpring.controllers;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -9,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BiblioSpring.entity.Categoria;
+import com.BiblioSpring.entity.Libro;
 import com.BiblioSpring.repository.CategoriasRepository;
 
 @Controller
@@ -16,11 +15,7 @@ public class CategoriaController {
 	@Autowired
 	private CategoriasRepository repository;
 
-	@PostConstruct
-	public void init() {
-		repository.save(new Categoria("informatica"));
-		repository.save(new Categoria("biologia"));
-	}
+	public Libro libros;
 
 	@RequestMapping("/Categoria")
 	public String viewcategoria(Model model, Pageable page) {
@@ -44,6 +39,7 @@ public class CategoriaController {
 	public String nuevaCategoria(Model model, Categoria categoria) {
 		// guardar parametro
 		repository.save(categoria);
+
 		return "categoria_guardado";
 
 	}
@@ -63,5 +59,4 @@ public class CategoriaController {
 
 		return "delete_borrado";
 	}
-
 }

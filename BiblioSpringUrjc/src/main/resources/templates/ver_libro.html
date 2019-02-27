@@ -11,17 +11,19 @@
 			<th>autor</th>
 			<th>lugarPublicacion</th>
 			<th>fechaPublicacion</th>
+			<th>area</th>
 
 			<th></th>
 		</tr>
-		{{#libros}}
+		{{#libros}} {{#categorias}}
 		<tr>
 			<td>{{nombre}}</td>
 			<td>{{autor}}</td>
 			<td>{{lugarPublicacion}}</td>
 			<td>{{fechaPublicacion}}</td>
+			<td>{{area}}</td>
 		</tr>
-		{{/libros}}
+		{{/categorias}}{{/libros}}
 	</table>
 
 	<a href="/Libro">Volver a Libro</a>

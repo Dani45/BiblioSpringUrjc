@@ -33,7 +33,7 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-12">
-							<form action="guardarLogin" method="POST" class="tm-login-form">
+							<form action="/login" method="POST" class="tm-login-form">
 								<div class="input-group">
 									<label for="username"
 										class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Usuario</label>
@@ -46,7 +46,8 @@
 										class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Contraseña</label>
 									<input name="pass" type="password"
 										class="form-control validate" id="password" value="1234"
-										required>
+										required> <input type="hidden" name="_csrf"
+										value="{{_csrf.token}}" />
 								</div>
 								<div class="input-group mt-3">
 									<button type="submit"
