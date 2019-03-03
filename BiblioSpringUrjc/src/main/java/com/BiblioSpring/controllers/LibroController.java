@@ -1,17 +1,15 @@
 package com.BiblioSpring.controllers;
 
-import java.util.Date;
-import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.BiblioSpring.entity.Categoria;
 import com.BiblioSpring.entity.Libro;
@@ -24,62 +22,68 @@ public class LibroController {
 	private LibrosRepository repository;
 	@Autowired
 	private CategoriasRepository repository2;
-
-	@PostConstruct
-	public void init() {
-
-		// elimina tablas
-		repository.deleteAllInBatch();
-		repository2.deleteAllInBatch();
-		// crea nuevoslibros
-		Libro libros = new Libro("Hibernate", "Learn ", "code", new Date("12/12/2020"));
-		Libro libros1 = new Libro("Hibernate1", "Learn 1", "code1", new Date("12/12/2021"));
-		Libro libros2 = new Libro("Hibernate2", "Learn 2", "code2", new Date("12/12/2022"));
-		// Create 2 categorias
-		Categoria categorias = new Categoria("informatica");
-		Categoria tag2 = new Categoria("Hibernate");
-		// add libro referenciado a categoria
-		libros.getCategorias().add(categorias);
-		libros1.getCategorias().add(tag2);
-		libros2.getCategorias().add(categorias);
-
-		categorias.getLibros().add(libros);
-		tag2.getLibros().add(libros1);
-		categorias.getLibros().add(libros2);
-		repository.save(libros);
-		repository.save(libros1);
-		repository.save(libros2);
-	}
-
-	@RequestMapping("/Libro")
-	public String Libro(Model model, Pageable page) {
-		// para mostrar las categorias añadidas automaticamente
-		model.addAttribute("categorias", repository2.findAll(page));
-
-		return "Libro";
-	}
-
+	/*
+	 * @PostConstruct public void init() {
+	 * 
+	 * // elimina tablas repository.deleteAllInBatch();
+	 * repository2.deleteAllInBatch(); // crea nuevoslibros Libro libros = new
+	 * Libro("Hibernate", "Learn ", "code", ("12/12/2020")); Libro libros1 = new
+	 * Libro("Hibernate1", "Learn 1", "code1", ("12/12/2021")); Libro libros2 = new
+	 * Libro("Hibernate2", "Learn 2", "code2", ("12/12/2022")); // Create 2
+	 * categorias Categoria categorias = new Categoria("informatica"); Categoria
+	 * tag2 = new Categoria("Hibernate"); // add libro referenciado a categoria
+	 * libros.getCategorias().add(categorias); libros1.getCategorias().add(tag2);
+	 * libros2.getCategorias().add(categorias);
+	 * 
+	 * categorias.getLibros().add(libros); tag2.getLibros().add(libros1);
+	 * categorias.getLibros().add(libros2); repository.save(libros);
+	 * repository.save(libros1); repository.save(libros2); }
+	 */
 	// @GetMapping("/AddLibro")
 
-	@RequestMapping("/AddLibro")
-	public String AnadirLibro(Model model, Pageable page) {
+	@RequestMapping("/BiblioSpring/Libro/AddLibro")
+	public String AnadirLibro(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "AddLibro";
 	}
 
-	@RequestMapping("/nuevoLibro")
-	public String addlibro(Model model, Pageable page) {
+	@RequestMapping("/BiblioSpring/Libro/nuevoLibro")
+	public String addlibro(Model model, Pageable page, HttpServletRequest request) {
 
 		model.addAttribute("libro", repository.findAll(page));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "nuevoLibro";
 	}
 
 	// @RequestMapping("/Libro/nuevo")
 
-	@GetMapping("/Libro/nuevo")
-	public String nuevoLibro(Model model, Libro libro, Categoria categorias) {
-		repository.save(libro);
+	@GetMapping("/BiblioSpring/Libro/nuevo")
+	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
+			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
+			Categoria categorias, HttpServletRequest request) {
+		try {
+			repository2.save(categorias);
+			Categoria cat = repository2.findByArea(area);
+			System.out.println("categorias: " + cat);
+
+			Libro libros = new Libro(nombre, autor, lugarPublicacion, fechaPublicacion, cat);
+
+			System.out.println("categorias: " + cat);
+
+			repository.save(libros);
+
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("user", request.isUserInRole("USER"));
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
 		return "libro_guardado";
 
 	}
@@ -88,10 +92,12 @@ public class LibroController {
 
 	// @RequestMapping("/ver_libro")
 
-	@GetMapping("/ver_libro")
-	public String viewLibro(Model model, Pageable page) {
+	@GetMapping("/BiblioSpring/Libro/ver_libro")
+	public String viewLibro(Model model, Pageable page, HttpServletRequest request) {
 
 		model.addAttribute("libros", repository.findAll(page));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		return "ver_libro";
 	}
 
@@ -99,9 +105,11 @@ public class LibroController {
 
 	// @RequestMapping("/Libro/{idLibro}")
 
-	@GetMapping("/Libro/{idLibro}")
-	public String verIndependiente(Model model, @PathVariable long idLibro) {
+	@GetMapping("/BiblioSpring/Libro/{idLibro}")
+	public String verIndependiente(Model model, @PathVariable long idLibro, HttpServletRequest request) {
 		model.addAttribute("libros", repository.findById(idLibro).get());
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "librodb";
 	}

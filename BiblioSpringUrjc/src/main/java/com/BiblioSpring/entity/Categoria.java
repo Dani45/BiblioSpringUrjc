@@ -1,7 +1,7 @@
 package com.BiblioSpring.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,22 +22,25 @@ public class Categoria {
 	private String area;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "categorias")
-	private Set<Libro> libros = new HashSet<>();
+	private List<Libro> libros = new ArrayList<Libro>();
 
+
+	/**
+	 * 
+	 */
 	public Categoria() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categoria(String area) {
+	/**
+	 * @param idCategoria
+	 * @param area
+	 */
+	public Categoria(Long idCategoria, String area) {
 		super();
+		this.idCategoria = idCategoria;
 		this.area = area;
-	}
-
-	public Categoria(String area, Set<Libro> libros) {
-		super();
-		this.area = area;
-		this.libros = libros;
 	}
 
 	public Long getIdCategoria() {
@@ -56,11 +59,11 @@ public class Categoria {
 		this.area = area;
 	}
 
-	public Set<Libro> getLibros() {
+	public List<Libro> getLibros() {
 		return libros;
 	}
 
-	public void setLibros(Set<Libro> libros) {
+	public void setLibros(List<Libro> libros) {
 		this.libros = libros;
 	}
 

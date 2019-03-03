@@ -17,16 +17,8 @@ public class CategoriaController {
 
 	public Libro libros;
 
-	@RequestMapping("/Categoria")
-	public String viewcategoria(Model model, Pageable page) {
-		// mostrar
-		model.addAttribute("categorias", repository.findAll(page));
-
-		return "Categoria";
-	}
-
 	// añadir
-	@RequestMapping("/AddCategoria")
+	@RequestMapping("/BiblioSpring/Categoria/AddCategoria")
 	public String Addcategoria(Model model, Pageable page) {
 
 		model.addAttribute("categoria", repository.findAll(page));
@@ -35,7 +27,7 @@ public class CategoriaController {
 	}
 
 	// crear nueva
-	@RequestMapping("/Categoria/nuevo")
+	@RequestMapping("/BiblioSpring/Categoria/nuevo")
 	public String nuevaCategoria(Model model, Categoria categoria) {
 		// guardar parametro
 		repository.save(categoria);
@@ -44,7 +36,7 @@ public class CategoriaController {
 
 	}
 
-	@RequestMapping("/DeleteCategoria")
+	@RequestMapping("/BiblioSpring/DeleteCategoria")
 	public String deleteCategoria(Model model, Pageable page) {
 
 		model.addAttribute("categorias", repository.findAll(page));
@@ -53,7 +45,7 @@ public class CategoriaController {
 
 	// eliminar
 
-	@RequestMapping("/Categoria/delete")
+	@RequestMapping("/BiblioSpring/Categoria/delete")
 	public String eliminarcategoria(Model model, Long idCategoria) {
 		repository.deleteById(idCategoria);
 

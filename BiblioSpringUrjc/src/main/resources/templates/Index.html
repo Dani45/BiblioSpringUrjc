@@ -10,19 +10,19 @@
 <title>BiblioURJC</title>
 
 <!-- Logo -->
-<link rel="shortcut icon" href="assets/images/logo/urjclogo.png"
+<link rel="shortcut icon" href="/assets/images/logo/urjclogo.png"
 	type="image/x-icon">
 
 
 <!-- CSS Files -->
 
-<link rel="stylesheet" href="assets/css/animate-3.7.0.css">
-<link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
-<link rel="stylesheet" href="assets/fonts/flat-icon/flaticon.css">
-<link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css">
-<link rel="stylesheet" href="assets/css/owl-carousel.min.css">
-<link rel="stylesheet" href="assets/css/nice-select.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/animate-3.7.0.css">
+<link rel="stylesheet" href="/assets/css/font-awesome-4.7.0.min.css">
+<link rel="stylesheet" href="/assets/fonts/flat-icon/flaticon.css">
+<link rel="stylesheet" href="/assets/css/bootstrap-4.1.3.min.css">
+<link rel="stylesheet" href="/assets/css/owl-carousel.min.css">
+<link rel="stylesheet" href="/assets/css/nice-select.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 	<!-- Preloader Starts -->
@@ -37,7 +37,7 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="logo-area">
-						<a href="/"><img src="assets/images//logo/urjclogo.png"
+						<a href="/"><img src="/assets/images/logo/urjclogo.png"
 							alt="logo"></a>
 					</div>
 				</div>
@@ -47,12 +47,20 @@
 					</div>
 					<div class="main-menu">
 						<ul>
-							<li><a href="/Libro">Libro</a></li>
-							<li><a href="/Categoria">Categoria</a></li>
-							<li><a href="/Alternativa">Alternativas</a></li>
-							<li><a href="/Prestamo">Prestamo</a></li>
-							<li><a href="/Contacto">Contacto</a></li>
-							<li class="menu-btn"><a href="/Login" class="login">Ingresar</a></li>
+							<li><a href="/BiblioSpring/Libro">Libro</a></li>
+							<li><a href="/BiblioSpring/Categoria">Categoria</a></li>
+							<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
+							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
+							<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
+							<li class="menu-btn"><a href="/BiblioSpring/Login"
+								class="login">Ingresar</a></li> 
+								
+								{{#admin}}
+							</li>
+							<li><a href="/BiblioSpring/Administrador">Administrador</a></li>
+							{{/admin}} {{#user}}
+							<li><a  href="/BiblioSpring/Login">Iniciar
+									sesión</a></li> {{/user}} 
 						</ul>
 					</div>
 				</div>
@@ -82,9 +90,9 @@
 				<div class="col-lg-4">
 					<div class="single-feature mb-4 mb-lg-0">
 						<h4>ALEACIÓN DE LEY</h4>
-						<p class="py-3">Aleación de ley es la secuela de la primera trilogía de
-									la saga «Nacidos de la Bruma [Mistborn]», una obra iniciada con
-									El imperio final y parte imprescindible del Cosmere.</p>
+						<p class="py-3">Aleación de ley es la secuela de la primera
+							trilogía de la saga «Nacidos de la Bruma [Mistborn]», una obra
+							iniciada con El imperio final y parte imprescindible del Cosmere.</p>
 						<a href="/Libro/3" class="secondary-btn">Comprar<span
 							class="flaticon-next"></span></a>
 					</div>
@@ -92,9 +100,9 @@
 				<div class="col-lg-4">
 					<div class="single-feature mb-4 mb-lg-0">
 						<h4>LA SOCIEDAD DE LOS SOÑADORES INVOLUNTARIOS</h4>
-						<p class="py-3">Aunque lleva muchos años separado, a Daniel Benchimol,
-									periodista y gran lector, está a punto de firmar el divorcio.
-									El trámite lo abruma y decide marchar de viaje</p>
+						<p class="py-3">Aunque lleva muchos años separado, a Daniel
+							Benchimol, periodista y gran lector, está a punto de firmar el
+							divorcio. El trámite lo abruma y decide marchar de viaje</p>
 						<a href="/Libro/1" class="secondary-btn">Comprar<span
 							class="flaticon-next"></span></a>
 					</div>
@@ -102,9 +110,9 @@
 				<div class="col-lg-4">
 					<div class="single-feature">
 						<h4>¿QUIÉN SE HA LLEVADO MI MÁSTER?</h4>
-						<p class="py-3">¿Eres el único que todavía no tiene un máster? ¿Sientes
-									que te falta algo? ¿Quieres saber dónde lo consiguieron los
-									ministros, alcaldes y funcionarios de media España?</p>
+						<p class="py-3">¿Eres el único que todavía no tiene un máster?
+							¿Sientes que te falta algo? ¿Quieres saber dónde lo consiguieron
+							los ministros, alcaldes y funcionarios de media España?</p>
 						<a href="/Libro/10" class="secondary-btn">Comprar<span
 							class="flaticon-next"></span></a>
 					</div>
@@ -127,57 +135,57 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4">
-						<img src="assets/images/cat1.png" alt="category">
+						<img src="/assets/images/cat1.png" alt="category">
 						<li><a href="/Categoria">accounting & Finance</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4">
-						<img src="assets/images/cat2.png" alt="category">
-						<li><a href="/Categoria">Sales</a></li> 
+						<img src="/assets/images/cat2.png" alt="category">
+						<li><a href="/Categoria">Sales</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4">
-						<img src="assets/images/cat3.png" alt="category">
+						<img src="/assets/images/cat3.png" alt="category">
 						<li><a href="/Categoria">telecommunication</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4">
-						<img src="assets/images/cat4.png" alt="category">
-						<<li><a href="/Categoria">literature</a></li>
+						<img src="/assets/images/cat4.png" alt="category"> <
+						<li><a href="/Categoria">literature</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4 mb-lg-0">
-						<img src="assets/images/cat5.png" alt="category">
-						<<li><a href="/Categoria">marketing and sales</a></li>
+						<img src="/assets/images/cat5.png" alt="category"> <
+						<li><a href="/Categoria">marketing and sales</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4 mb-lg-0">
-						<img src="assets/images/cat6.png" alt="category">
-						<<li><a href="/Categoria">engineer & architech</a></li>
+						<img src="/assets/images/cat6.png" alt="category"> <
+						<li><a href="/Categoria">engineer & architech</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center mb-4 mb-md-0">
-						<img src="assets/images/cat7.png" alt="category">
-						<<li><a href="/Categoria">design & crative</a></li>
+						<img src="/assets/images/cat7.png" alt="category"> <
+						<li><a href="/Categoria">design & crative</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="single-category text-center">
-						<img src="assets/images/cat8.png" alt="category">
-						<<<li><a href="/Categoria">science</a></li>
+						<img src="/assets/images/cat8.png" alt="category"> <<
+						<li><a href="/Categoria">science</a></li>
 						<h5>250 books</h5>
 					</div>
 				</div>
@@ -262,12 +270,12 @@
 
 
 	<!-- Javascript -->
-	<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
-	<script src="assets/js/vendor/wow.min.js"></script>
-	<script src="assets/js/vendor/owl-carousel.min.js"></script>
-	<script src="assets/js/vendor/jquery.nice-select.min.js"></script>
-	<script src="assets/js/vendor/ion.rangeSlider.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="/assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+	<script src="/assets/js/vendor/wow.min.js"></script>
+	<script src="/assets/js/vendor/owl-carousel.min.js"></script>
+	<script src="/assets/js/vendor/jquery.nice-select.min.js"></script>
+	<script src="/assets/js/vendor/ion.rangeSlider.js"></script>
+	<script src="/assets/js/main.js"></script>
 </body>
 </html>

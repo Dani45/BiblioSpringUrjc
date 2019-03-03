@@ -1,6 +1,7 @@
 package com.BiblioSpring.controllers;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -24,34 +25,33 @@ public class ContactoController {
 		repository.save(new Contacto("Juan", "Hola caracola", "XXXX", "sdad"));
 	}
 
-	@RequestMapping("/Contacto")
-	public String contacto(Model model, Pageable page) {
-
-		return "Contacto";
-	}
-
-	@RequestMapping("/nuevoContacto")
-	public String addcontacto(Model model, Pageable page) {
+	@RequestMapping("/BiblioSpring/nuevoContacto")
+	public String addcontacto(Model model, Pageable page, HttpServletRequest request) {
 
 		model.addAttribute("contacto", repository.findAll(page));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "nuevoContacto";
 	}
 
-	@RequestMapping("/Contacto/nuevo")
-	public String nuevoContacto(Model model, Contacto contacto) {
+	@RequestMapping("/BiblioSpring/Contacto/nuevo")
+	public String nuevoContacto(Model model, Contacto contacto, HttpServletRequest request) {
 
 		repository.save(contacto);
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "contacto_guardado";
 
 	}
 
-	@RequestMapping("/ver_Contacto")
-	public String viewContacto(Model model, Pageable page) {
+	@RequestMapping("/BiblioSpring/ver_Contacto")
+	public String viewContacto(Model model, Pageable page, HttpServletRequest request) {
 
 		model.addAttribute("contactos", repository.findAll(page));
-
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		return "ver_Contacto";
 	}
 }
