@@ -1,0 +1,27 @@
+<html>
+<body>
+
+
+	<h2>Lista de peliculas</h2>
+
+	<table>
+		<tr>
+
+			<th>nombre</th>
+			<th>ano</th>
+			<th>lugarPublicacion</th>
+
+			<th></th>
+		</tr>
+		{{#peliculas}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{ano}}</td>
+			<td>{{lugarPublicacion}}</td>
+		</tr>
+		{{/peliculas}}
+	</table>
+
+	<a href="/Alternativa">Volver a Alternativa</a>
+</body>
+</html>
