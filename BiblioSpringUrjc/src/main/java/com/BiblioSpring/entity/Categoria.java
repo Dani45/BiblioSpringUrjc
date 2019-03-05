@@ -33,7 +33,7 @@ public class Categoria {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categoria(Long idCategoria, String area) {
+	public Categoria(String area) {
 		super();
 		this.area = area;
 	}

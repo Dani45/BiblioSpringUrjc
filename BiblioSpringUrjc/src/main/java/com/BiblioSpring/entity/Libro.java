@@ -45,6 +45,22 @@ public class Libro {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	/**
+	 * @param nombre
+	 * @param autor
+	 * @param lugarPublicacion
+	 * @param fechaPublicacion
+	 */
+	public Libro(String nombre, String autor, String lugarPublicacion, String fechaPublicacion) {
+		super();
+		this.nombre = nombre;
+		this.autor = autor;
+		this.lugarPublicacion = lugarPublicacion;
+		this.fechaPublicacion = fechaPublicacion;
+	}
+
+
 	public Libro(String nombre, String autor, String lugarPublicacion, String fechaPublicacion, Categoria cat) {
 		super();
 		this.nombre = nombre;

@@ -1,5 +1,6 @@
 package com.BiblioSpring.controllers;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,23 +23,47 @@ public class LibroController {
 	private LibrosRepository repository;
 	@Autowired
 	private CategoriasRepository repository2;
-	/*
-	 * @PostConstruct public void init() {
-	 * 
-	 * // elimina tablas repository.deleteAllInBatch();
-	 * repository2.deleteAllInBatch(); // crea nuevoslibros Libro libros = new
-	 * Libro("Hibernate", "Learn ", "code", ("12/12/2020")); Libro libros1 = new
-	 * Libro("Hibernate1", "Learn 1", "code1", ("12/12/2021")); Libro libros2 = new
-	 * Libro("Hibernate2", "Learn 2", "code2", ("12/12/2022")); // Create 2
-	 * categorias Categoria categorias = new Categoria("informatica"); Categoria
-	 * tag2 = new Categoria("Hibernate"); // add libro referenciado a categoria
-	 * libros.getCategorias().add(categorias); libros1.getCategorias().add(tag2);
-	 * libros2.getCategorias().add(categorias);
-	 * 
-	 * categorias.getLibros().add(libros); tag2.getLibros().add(libros1);
-	 * categorias.getLibros().add(libros2); repository.save(libros);
-	 * repository.save(libros1); repository.save(libros2); }
-	 */
+
+	@PostConstruct
+	public void init() {
+		Libro l1=new Libro("LA SOCIEDAD DE LOS SOÑADORES INVOLUNTARIOS", "AGUALUSA, JOSÉ EDUARDO", "Madrid",("01/02/2018"));
+		Libro l2=new Libro("LAS LÁGRIMAS", "QUIGNARD, PASCAL", "Madrid",("01/02/2017"));
+		Libro l3=new Libro("ASESINOS DE SERIES", "SANCHEZ, ROBERTO", "Madrid", ("01/02/2017"));
+		Libro l4=new Libro("ALEACIÓN DE LEY", "SANDERSON, BRANDON", "Madrid", ("01/02/2017"));
+		Libro l5=new Libro("LA LEYENDA DE LA ISLA SIN VOZ", "MONTFORT", "Madrid",("01/02/2017"));
+		Libro l6=new Libro("SECRETOS IMPERFECTOS", "HJORTH,MICHAEL", "Madrid", ("01/02/2017"));
+		Libro l7=new Libro("BLUE", "STEEL, DANIELLE", "Madrid", ("01/02/2017"));
+		Libro l8=new Libro("MÁS DE TI", "SHERIDAN, MIA", "Madrid", ("01/02/2017"));
+		Libro l9=new Libro("EL CEREBRO DEL INVERSOR", "BERMEJO, PEDRO", "Madrid", ("01/02/2017"));
+		Libro l0=new Libro("QUIÉN SE HA LLEVADO MI MÁSTER", "FUENTES, TOMÁS", "Madrid", ("01/02/2017"));
+		repository.save(l1);
+		repository.save(l2);
+		repository.save(l3);
+		repository.save(l4);
+		repository.save(l5);
+		repository.save(l6);
+		repository.save(l7);
+		repository.save(l8);
+		repository.save(l9);
+		repository.save(l0);
+		Categoria c1 = new Categoria("informatica");
+		Categoria c2=new Categoria("Literatura");
+		Categoria c3=new Categoria("Administracion");
+		l1.getCategorias().add(c2);
+		l2.getCategorias().add(c2);
+		l3.getCategorias().add(c2);
+		l4.getCategorias().add(c2);
+		l5.getCategorias().add(c2);
+		l6.getCategorias().add(c2);
+		l7.getCategorias().add(c2);
+		l8.getCategorias().add(c2);
+		l9.getCategorias().add(c3);
+		l0.getCategorias().add(c3);
+		repository2.save(c1);
+		repository2.save(c2);
+		repository2.save(c3);	
+	}
+	
 	// @GetMapping("/AddLibro")
 
 	@RequestMapping("/BiblioSpring/Libro/AddLibro")
@@ -64,20 +89,20 @@ public class LibroController {
 	@GetMapping("/BiblioSpring/Libro/nuevo")
 	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
 			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
-			Categoria categorias, HttpServletRequest request) {
+			Categoria categorias, Libro libros2, HttpServletRequest request) {
 		try {
-			
-		
+
 			Categoria cat = repository2.findByArea(area);
-		if (cat ==null) {
-			System.out.println("categorias: " + cat);
-			cat = repository2.save(categorias);
-		}
+			if (cat == null) {
+				System.out.println("categorias: " + cat);
+				cat = repository2.save(categorias);
+			}
 			Libro libros = new Libro(nombre, autor, lugarPublicacion, fechaPublicacion, cat);
 
 			System.out.println("categorias: " + cat);
 
 			repository.save(libros);
+			repository.save(libros2);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
 
