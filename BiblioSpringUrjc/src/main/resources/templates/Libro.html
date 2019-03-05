@@ -80,10 +80,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<form action="#" class="d-md-flex justify-content-between">
+						<form action="/BiblioSpring/Libro/ver_libro" class="d-md-flex justify-content-between">
 							<select> {{#Categoria}}
 								<option>{{area}}</option> {{/Categoria}}
-							</select> <input type="text" placeholder="Buscar Titulo,Autor,ISBN"
+							</select> <input name="nombre" =titulo type="text" placeholder="Buscar Titulo,Autor,ISBN"
 								onfocus="this.placeholder = ''"
 								onblur="this.placeholder = 'Buscar Titulo'" required>
 							<button type="submit" class="template-btn">Buscar Libro</button>

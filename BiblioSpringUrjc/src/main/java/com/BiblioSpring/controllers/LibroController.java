@@ -73,7 +73,7 @@ public class LibroController {
 
 		return "AddLibro";
 	}
-
+/*
 	@RequestMapping("/BiblioSpring/Libro/nuevoLibro")
 	public String addlibro(Model model, Pageable page, HttpServletRequest request) {
 
@@ -83,8 +83,7 @@ public class LibroController {
 
 		return "nuevoLibro";
 	}
-
-	// @RequestMapping("/Libro/nuevo")
+*/
 
 	@GetMapping("/BiblioSpring/Libro/nuevo")
 	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
@@ -120,12 +119,12 @@ public class LibroController {
 	// @RequestMapping("/ver_libro")
 
 	@GetMapping("/BiblioSpring/Libro/ver_libro")
-	public String viewLibro(Model model, Pageable page, HttpServletRequest request) {
+	public String viewLibro(Model model, @RequestParam String nombre, HttpServletRequest request) {
 
-		model.addAttribute("libros", repository.findAll(page));
+		model.addAttribute("libros", repository.findByNombre(nombre).get());
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
-		return "ver_libro";
+		return "librodb";
 	}
 
 	// añadido para enlaces de libro
