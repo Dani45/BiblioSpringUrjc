@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "categorias")
 public class Categoria {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCategoria;
@@ -23,7 +24,6 @@ public class Categoria {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "categorias")
 	private List<Libro> libros = new ArrayList<Libro>();
-
 
 	/**
 	 * 
@@ -67,4 +67,8 @@ public class Categoria {
 		this.libros = libros;
 	}
 
+	@Override
+	public String toString() {
+		return "Categoria [idCategoria=" + idCategoria + ", area=" + area + ", libros=" + libros + "]";
+	}
 }

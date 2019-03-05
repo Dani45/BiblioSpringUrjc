@@ -66,16 +66,18 @@ public class LibroController {
 			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
 			Categoria categorias, HttpServletRequest request) {
 		try {
-			repository2.save(categorias);
+			
+		
 			Categoria cat = repository2.findByArea(area);
+		if (cat ==null) {
 			System.out.println("categorias: " + cat);
-
+			cat = repository2.save(categorias);
+		}
 			Libro libros = new Libro(nombre, autor, lugarPublicacion, fechaPublicacion, cat);
 
 			System.out.println("categorias: " + cat);
 
 			repository.save(libros);
-
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
 
