@@ -19,17 +19,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		// Public pages
 		http.authorizeRequests().antMatchers("/BiblioSpring").permitAll();
-		http.authorizeRequests().antMatchers("/BiblioSpring/Libro/**").permitAll();
-		http.authorizeRequests().antMatchers("/BiblioSpring/Categoria/**").permitAll();
-		http.authorizeRequests().antMatchers("/BiblioSpring/Alternativas/**").permitAll();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Libro").permitAll();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Categoria").permitAll();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Alternativas").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Prestamo").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Contacto").permitAll();
 
+		// Private pages (all other pages)
 		http.authorizeRequests().antMatchers("/BiblioSpring/Login").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Register").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/loginError").permitAll();
 
-		// Private pages (all other pages)
 		http.authorizeRequests().antMatchers("/BiblioSpring/Administrador").hasAnyRole("ADMIN");
 		// http.authorizeRequests().antMatchers("/Admin").hasAnyRole("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();

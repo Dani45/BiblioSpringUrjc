@@ -29,8 +29,8 @@ public class PrincipalController {
 		model.addAttribute("Alternativas", repositoryAlternativas.findAll());
 		model.addAttribute("Prestamo", repositoryContacto.findAll());
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		// model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "Index";
 	}
@@ -41,8 +41,8 @@ public class PrincipalController {
 		model.addAttribute("Libro", repositoryLibro.findAll());
 		model.addAttribute("Categoria", repositoryCategoria.findAll());
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		// model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "Libro";
 	}
@@ -52,8 +52,8 @@ public class PrincipalController {
 
 		model.addAttribute("Categoria", repositoryCategoria.findAll(page));
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		// model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "Categoria";
 	}
@@ -63,8 +63,8 @@ public class PrincipalController {
 
 		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		// model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "Alternativa";
 	}
@@ -85,8 +85,8 @@ public class PrincipalController {
 
 		// model.addAttribute("Contacto", repositoryContacto.findAll());
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		// model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "Contacto";
 	}

@@ -29,5 +29,6 @@ class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 		if (token != null) {
 			modelAndView.addObject("token", token.getToken());
 		}
+
 	}
 }

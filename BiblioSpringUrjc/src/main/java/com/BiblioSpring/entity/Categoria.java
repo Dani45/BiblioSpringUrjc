@@ -33,13 +33,8 @@ public class Categoria {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param idCategoria
-	 * @param area
-	 */
 	public Categoria(Long idCategoria, String area) {
 		super();
-		this.idCategoria = idCategoria;
 		this.area = area;
 	}
 
