@@ -8,18 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Pelicula {
+public class Pelicula{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idPelicula;
 	@Column
 	private String nombre;
 	@Column
-	private String autor;
-	@Column
 	private Integer ano;
 	@Column
-	private String tipo;
+	private String lugarPublicacion;
 	@OneToOne
 	private Alternativa alternativa;
 
@@ -28,18 +26,19 @@ public class Pelicula {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pelicula(String nombre, String autor, Integer ano, String tipo) {
+	public Pelicula(String nombre, Integer ano, String lugarPublicacion) {
 		super();
 		this.nombre = nombre;
-		this.autor = autor;
 		this.ano = ano;
-		this.tipo = tipo;
+		this.lugarPublicacion = lugarPublicacion;
 	}
 
 	@Override
 	public String toString() {
-		return "Pelicula [nombre=" + nombre + ", autor=" + autor + ", ano=" + ano + ", tipo=" + tipo + "]";
+		return "Fanzine [nombre=" + nombre + ", ano=" + ano +  ", lugarPublicacion="
+				+ lugarPublicacion + "]";
 	}
+
 
 	public Long getIdPelicula() {
 		return idPelicula;
@@ -57,12 +56,14 @@ public class Pelicula {
 		this.nombre = nombre;
 	}
 
-	public String getAutor() {
-		return autor;
+	
+
+	public String getLugarPublicacion() {
+		return lugarPublicacion;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setLugarPublicacion(String lugarPublicacion) {
+		this.lugarPublicacion = lugarPublicacion;
 	}
 
 	public Integer getAno() {
@@ -73,13 +74,7 @@ public class Pelicula {
 		this.ano = ano;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 
 	public Alternativa getAlternativa() {
 		return alternativa;

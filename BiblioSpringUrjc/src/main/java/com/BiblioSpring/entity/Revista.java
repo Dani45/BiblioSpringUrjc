@@ -15,7 +15,7 @@ public class Revista {
 	@Column
 	private String nombre;
 	@Column
-	private String numero;
+	private Integer numero;
 	@Column
 	private Integer ano;
 	@OneToOne
@@ -37,11 +37,11 @@ public class Revista {
 		this.nombre = nombre;
 	}
 
-	public String getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 
@@ -66,7 +66,7 @@ public class Revista {
 		return "Revista [nombre=" + nombre + ", numero=" + numero + ", ano=" + ano + "]";
 	}
 
-	public Revista(String nombre, String numero, Integer ano) {
+	public Revista(String nombre, Integer numero, Integer ano) {
 		super();
 		this.nombre = nombre;
 		this.numero = numero;

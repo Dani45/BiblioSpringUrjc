@@ -17,7 +17,9 @@ public class Fanzine {
 	@Column
 	private Integer ano;
 	@Column
-	private String tipo; // para saber si es fisico o digital
+	private Integer numero;
+	@Column
+	private String lugarPublicacion;
 
 	@OneToOne
 	private Alternativa alternativa;
@@ -27,16 +29,20 @@ public class Fanzine {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Fanzine(String nombre, Integer ano, String tipo) {
+	public Fanzine(String nombre, Integer ano,Integer numero, String lugarPublicacion) {
 		super();
 		this.nombre = nombre;
 		this.ano = ano;
-		this.tipo = tipo;
+		this.numero = numero;
+		this.lugarPublicacion = lugarPublicacion;
 	}
+
+	
 
 	@Override
 	public String toString() {
-		return "Fanzine [nombre=" + nombre + ", ano=" + ano + ", tipo=" + tipo + "]";
+		return "Fanzine [nombre=" + nombre + ", ano=" + ano + ", numero=" + numero + ", lugarPublicacion="
+				+ lugarPublicacion + "]";
 	}
 
 	public Long getIdFanzine() {
@@ -63,12 +69,22 @@ public class Fanzine {
 		this.ano = ano;
 	}
 
-	public String getTipo() {
-		return tipo;
+	
+
+	public Integer getNumero() {
+		return numero;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getLugarPublicacion() {
+		return lugarPublicacion;
+	}
+
+	public void setLugarPublicacion(String lugarPublicacion) {
+		this.lugarPublicacion = lugarPublicacion;
 	}
 
 	public Alternativa getAlternativa() {
