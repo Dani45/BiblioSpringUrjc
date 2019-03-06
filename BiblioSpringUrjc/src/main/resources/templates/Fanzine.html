@@ -83,14 +83,12 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<form action="#" class="d-md-flex justify-content-between">
-							<select>
-								<option value="1">Alternativas</option> {{#alternativas}}
-								<option value="2">{{alternativa}}</option> {{/alternativas}}
-
-							</select> <input type="text" placeholder="Buscar Lugar,Año,numero"
+						<form action="/BiblioSpring/Fanzine/buscar_Fanzine" class="d-md-flex justify-content-between">
+							<select> {{#Alternativa}}
+								<option>{{alternativa}}</option> {{/Alternativa}}
+							</select> <input name="nombre" titulo type ="text" placeholder="Buscar por Nombre"
 								onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'Buscar Titulo'" required>
+								onblur="this.placeholder = 'Buscar por nombre'" required>
 							<button type="submit" class="template-btn">Buscar Fanzine</button>
 						</form>
 					</div>
