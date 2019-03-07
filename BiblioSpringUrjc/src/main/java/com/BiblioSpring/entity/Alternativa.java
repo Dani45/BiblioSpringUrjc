@@ -16,7 +16,7 @@ public class Alternativa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idAlternativa;
 
-	@Column
+	@Column (name = "alternativa")
 	private String alternativa;
 	
 	@OneToOne
@@ -33,6 +33,7 @@ public class Alternativa {
 	}
 	public Alternativa(String alternativa) {
 		super();
+		this.idAlternativa = idAlternativa;
 		this.alternativa = alternativa;
 	}
 	public long getIdAlternativa() {

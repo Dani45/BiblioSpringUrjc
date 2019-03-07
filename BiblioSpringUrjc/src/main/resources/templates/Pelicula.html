@@ -67,7 +67,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 offset-md-3">
-						<h2>Busca tu Fanzine</h2>
+						<h2>Busca tu Pelicula</h2>
 					</div>
 				</div>
 			</div>
@@ -83,14 +83,12 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<form action="#" class="d-md-flex justify-content-between">
-							<select>
-								<option value="1">Alternativas</option> {{#alternativas}}
-								<option value="2">{{alternativa}}</option> {{/alternativas}}
-
-							</select> <input type="text" placeholder="Buscar Lugar,Año"
+						<form action="/BiblioSpring/Pelicula/buscar_Pelicula" class="d-md-flex justify-content-between">
+							<select> {{#Alternativa}}
+								<option>{{alternativa}}</option> {{/Alternativa}}
+							</select> <input name="nombre" titulo type ="text" placeholder="Buscar por Nombre"
 								onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'Buscar Titulo'" required>
+								onblur="this.placeholder = 'Buscar por Nombre'" required>
 							<button type="submit" class="template-btn">Buscar Pelicula</button>
 						</form>
 					</div>
