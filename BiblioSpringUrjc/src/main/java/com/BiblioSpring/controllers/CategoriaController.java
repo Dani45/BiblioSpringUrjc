@@ -1,9 +1,13 @@
 package com.BiblioSpring.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BiblioSpring.entity.Categoria;
@@ -50,5 +54,13 @@ public class CategoriaController {
 		repository.deleteById(idCategoria);
 
 		return "delete_borrado";
+	}
+	@GetMapping("/BiblioSpring/Categoria/{idCategoria}")
+	public String verIndependiente(Model model, @PathVariable long idCategoria, HttpServletRequest request) {
+		model.addAttribute("categorias", repository.findById(idCategoria).get());
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "categoriabd";
 	}
 }
