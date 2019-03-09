@@ -24,6 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/BiblioSpring/Alternativas").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Prestamo").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Contacto").permitAll();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Fanzine").permitAll();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Pelicula").permitAll();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Revista").permitAll();
 
 		// Private pages (all other pages)
 		http.authorizeRequests().antMatchers("/BiblioSpring/Login").permitAll();
