@@ -1,13 +1,20 @@
 package com.BiblioSpring.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.BiblioSpring.entity.Email;
+import com.BiblioSpring.entity.User;
 import com.BiblioSpring.repository.*;
 
 @Controller
@@ -20,7 +27,61 @@ public class PrincipalController {
 	private AlternativasRepository repositoryAlternativas;
 	@Autowired
 	private ContactosRepository repositoryContacto;
+	@Autowired
+	private UserRepository userRepository;		
+	
+	// ----------------------------- REGISTRAR NUEVO USUARIO --------------------------
+	/*
+	@RequestMapping("/new_user")
+	public String new_user (Model model, HttpServletRequest request) {
+		model.addAttribute("alert", " ");
+		// atributos del token
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
+		return "/BiblioSpring/Libro/AddLibro";
+	}
+	*/
+	@PostMapping(value = "/register")
+public String registroCliente(Model model, HttpServletRequest request,@RequestParam String name,@RequestParam String email,@RequestParam String password) {
+		
+		if((userRepository.findByName(name) == null) && (name!="") && (email!="")) {
+			
+			System.out.println(email);
+			
+			User nuevoUsuario = new User (name, password,email,  "ROLE_USER");
+			Email nuevoEmail = new Email(name,email);
+			userRepository.save(nuevoUsuario);
+			
+			/*
+		    String url= "http://localhost:8070/mail/";
+		    RestTemplate rest = new RestTemplate();	
+		    rest.postForLocation(url, nuevoEmail);
+		    System.out.println("Datos enviados!");
+			*/
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			return ("/BiblioSpring");
+			
+		} else {
+			model.addAttribute("alert", "Usuario ya existente");
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			return("/new_user");
+			
+		}
+	
+	}
 
+	@RequestMapping("/new_user")
+	public String new_user (Model model, HttpServletRequest request) {
+		model.addAttribute("alert", "");
+		// atributos del token
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
+		return "new_user";
+	}
 	@RequestMapping("/BiblioSpring")
 	public String Index(Model model, HttpServletRequest request) {
 
@@ -110,7 +171,8 @@ public class PrincipalController {
 
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
-
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		return "Login";
 	}
 
