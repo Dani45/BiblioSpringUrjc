@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/BiblioSpring/Libro").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Categoria").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Alternativas").permitAll();
-		http.authorizeRequests().antMatchers("/BiblioSpring/Prestamo").permitAll();
+		
 		http.authorizeRequests().antMatchers("/BiblioSpring/Contacto").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Fanzine").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/Pelicula").permitAll();
@@ -30,22 +30,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		// Private pages (all other pages)
 		http.authorizeRequests().antMatchers("/BiblioSpring/Login").permitAll();
-		http.authorizeRequests().antMatchers("/BiblioSpring/Register").permitAll();
+		http.authorizeRequests().antMatchers("/new_user").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/loginError").permitAll();
-
+		
+        http.authorizeRequests().antMatchers("/BiblioSpring/Prestamo").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/BiblioSpring/Administrador").hasAnyRole("ADMIN");
-		// http.authorizeRequests().antMatchers("/Admin").hasAnyRole("ADMIN");
-		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/BiblioSpring/Libro/AddLibro").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/BiblioSpring/Categoria/AddCategoria").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/BiblioSpring/DeleteCategoria").hasAnyRole("ADMIN");
+		
 		// Login form
 		http.formLogin().loginPage("/BiblioSpring/Login");
 		http.formLogin().usernameParameter("username");
 		http.formLogin().passwordParameter("password");
-		http.formLogin().defaultSuccessUrl("/BiblioSpring");
-		http.formLogin().failureUrl("/BiblioSpring/LoginError");
+		// en caso del correcto inicio de sesion
+        http.formLogin().defaultSuccessUrl("/BiblioSpring/login/true");
+        // en caso del incorrecto inicio de sesion
+        http.formLogin().failureUrl("/BiblioSpring/login/false");
 
 		// Logout
 		http.logout().logoutUrl("/BiblioSpring/Logout");
-		http.logout().logoutSuccessUrl("/BiblioSpring");
+		http.logout().logoutSuccessUrl("/");
 	}
 
 	@Override

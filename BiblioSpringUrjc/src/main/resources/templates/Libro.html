@@ -54,8 +54,14 @@
 								<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
 								<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
 								<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
-								<li class="menu-btn"><a href="/BiblioSpring/Login"
-									class="login">Ingresar</a></li>
+								 {{#unregistered}}
+							<li class="menu-btn"><a href="/BiblioSpring/Login"
+								class="login">Ingresar</a></li> 
+								{{/unregistered}}
+								 {{#registered}}
+							<li class="menu-btn"><a href="/BiblioSpring/Logout"
+								class="login">Salir</a></li>  
+								 {{/registered}}
 							</ul>
 						</div>
 					</div>

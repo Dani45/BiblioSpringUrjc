@@ -52,8 +52,14 @@
 							<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
 							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
 							<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
+							{{#unregistered}}
 							<li class="menu-btn"><a href="/BiblioSpring/Login"
-								class="login">Ingresar</a></li>
+								class="login">Ingresar</a></li> 
+								{{/unregistered}}
+								 {{#registered}}
+							<li class="menu-btn"><a href="/BiblioSpring/Logout"
+								class="login">Salir</a></li>  
+								 {{/registered}}
 
 						</ul>
 					</div>
@@ -62,10 +68,38 @@
 		</div>
 	</header>
 	<!-- Header Area End -->
-	<form action="/BiblioSpring/Logout" method="post">
-		<input type="submit" value="Sign Out" /> <input type="hidden"
-			name="_csrf" value="{{token}}" />
-	</form>
+	<!-- Feature Area Starts -->
+	<section class="feature-area section-padding2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="single-feature mb-4 mb-lg-0">
+						<h4>Añadir Libro nuevo</h4>
+						<p class="py-3">Podrás añadir nuevo libro</p>
+						<a href="/BiblioSpring/Libro/AddLibro" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature mb-4 mb-lg-0">
+						<h4>Añadir Nueva Categoría</h4>
+						<p class="py-3">Podrás añadir nuevo tipo de categoría</p>
+						<a href="/BiblioSpring/Categoria/AddCategoria" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Añadir Nuevo  pelicula</h4>
+						<p class="py-3">Añade las peliculas favoritas</p>
+						<a href="/BiblioSpring/Pelicula/AddPelicula" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Feature Area End -->
 
 
 

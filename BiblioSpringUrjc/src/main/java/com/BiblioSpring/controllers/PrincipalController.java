@@ -1,14 +1,18 @@
 package com.BiblioSpring.controllers;
 
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,20 +34,13 @@ public class PrincipalController {
 	@Autowired
 	private UserRepository userRepository;		
 	
-	// ----------------------------- REGISTRAR NUEVO USUARIO --------------------------
-	/*
-	@RequestMapping("/new_user")
-	public String new_user (Model model, HttpServletRequest request) {
-		model.addAttribute("alert", " ");
-		// atributos del token
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
-		
-		return "/BiblioSpring/Libro/AddLibro";
-	}
-	*/
+	
 	@PostMapping(value = "/register")
-public String registroCliente(Model model, HttpServletRequest request,@RequestParam String name,@RequestParam String email,@RequestParam String password) {
+public String registroCliente(Model model, HttpSession usuario,HttpServletRequest request,@RequestParam String name,@RequestParam String email,@RequestParam String password) {
+		usuario.setAttribute("name", name);
+		usuario.setAttribute("password", password);
+		usuario.setAttribute("email", email);
+		usuario.setAttribute("registered", true);
 		
 		if((userRepository.findByName(name) == null) && (name!="") && (email!="")) {
 			
@@ -52,7 +49,9 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 			User nuevoUsuario = new User (name, password,email,  "ROLE_USER");
 			Email nuevoEmail = new Email(name,email);
 			userRepository.save(nuevoUsuario);
-			
+			model.addAttribute("registered", usuario.getAttribute("registered"));
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", aux);
 			/*
 		    String url= "http://localhost:8070/mail/";
 		    RestTemplate rest = new RestTemplate();	
@@ -61,7 +60,7 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 			*/
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
-			return ("/BiblioSpring");
+			return ("Index");
 			
 		} else {
 			model.addAttribute("alert", "Usuario ya existente");
@@ -82,9 +81,20 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 		
 		return "new_user";
 	}
-	@RequestMapping("/BiblioSpring")
-	public String Index(Model model, HttpServletRequest request) {
+	@RequestMapping("/")
+	public String Index(Model model, HttpServletRequest request,HttpSession usuario) throws ParseException{
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
 
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("Libro", repositoryLibro.findAll());
 		model.addAttribute("Categoria", repositoryCategoria.findAll());
 		model.addAttribute("Alternativas", repositoryAlternativas.findAll());
@@ -97,8 +107,19 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 	}
 
 	@RequestMapping("/BiblioSpring/Libro")
-	public String Libro(Model model, HttpServletRequest request) {
+	public String Libro(Model model, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
 
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("Libro", repositoryLibro.findAll());
 		model.addAttribute("Categoria", repositoryCategoria.findAll());
 
@@ -109,8 +130,19 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 	}
 
 	@RequestMapping("/BiblioSpring/Categoria")
-	public String Categoria(Model model, Pageable page, HttpServletRequest request) {
+	public String Categoria(Model model, Pageable page, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
 
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("Categoria", repositoryCategoria.findAll(page));
 
 		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -120,8 +152,19 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 	}
 
 	@RequestMapping("/BiblioSpring/Alternativa")
-	public String Alternativas(Model model, HttpServletRequest request) {
+	public String Alternativas(Model model, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
 
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
 
 		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -131,8 +174,19 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 	}
 
 	@RequestMapping("/BiblioSpring/Prestamo")
-	public String Prestamo(Model model, HttpServletRequest request) {
+	public String Prestamo(Model model, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
 
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("Prestamo", repositoryContacto.findAll());
 
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -142,63 +196,89 @@ public String registroCliente(Model model, HttpServletRequest request,@RequestPa
 	}
 
 	@RequestMapping("/BiblioSpring/Contacto")
-	public String Contacto(Model model, Pageable page, HttpServletRequest request) {
+	public String Contacto(Model model, Pageable page, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
 
-		// model.addAttribute("Contacto", repositoryContacto.findAll());
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
 
-		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		// model.addAttribute("user", request.isUserInRole("USER"));
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 
 		return "Contacto";
 	}
 
 	@RequestMapping("/BiblioSpring/Administrador")
-	public String Administrador(Model model, HttpServletRequest request) {
-		/// modificar pra gestionarlo mejor
-		// model.addAttribute("Libro", repositoryLibro.findAll());
-		// model.addAttribute("Categoria", repositoryCategoria.findAll());
-		// model.addAttribute("Alternativas", repositoryAlternativas.findAll());
-		// model.addAttribute("Prestamo", repositoryContacto.findAll());
+	public String Administrador(Model model, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+
 
 		return "Administrador";
 	}
 
 	@GetMapping("/BiblioSpring/Login")
 	public String Login(Model model, HttpServletRequest request) {
-
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		model.addAttribute("alert", "");
+		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		return "Login";
 	}
 
-	@GetMapping("/BiblioSpring/Register")
-	public String Register(Model model, HttpServletRequest request) {
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+	@RequestMapping("/BiblioSpring/login/{loged}")
+	public String LoginError(Model model, UsernamePasswordAuthenticationToken user, HttpSession usuario, @PathVariable String loged, HttpServletRequest request) {
+		if(loged.equals("true")) {
+					
+			User usur = userRepository.findByName(user.getName());
+			
+			usuario.setAttribute("registered", true);
+			usuario.setAttribute("name", usur.getName());
+			usuario.setAttribute("password", usur.getPasswordHash());
+			usuario.setAttribute("email", usur.getEmail());
+			if(usur.getRoles().contains("ROLE_ADMIN")) {
+				usuario.setAttribute("admin", true);
+				model.addAttribute("admin", usuario.getAttribute("admin"));
+			}
+			model.addAttribute("registered", usuario.getAttribute("registered"));
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", aux);
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
+			return "Index";
+		}
+		model.addAttribute("alert","User or password incorrect");			
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 
-		return "Register";
-	}
-
-	@RequestMapping("/BiblioSpring/LoginError")
-	public String LoginError(Model model, HttpServletRequest request) {
-
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
-
-		return "LoginError";
+		return "/BiblioSpring/Login";
 	}
 
 	@GetMapping("/BiblioSpring/Logout")
 	public String Salir(Model model, HttpServletRequest request) {
-
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 
 		return "/Logout";
 	}

@@ -30,7 +30,6 @@
 		<div class="spinner"></div>
 	</div>
 	<!-- Preloader End -->
-
 	<!-- Header Area Starts -->
 	<header class="header-area main-header">
 		<div class="container">
@@ -52,15 +51,17 @@
 							<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
 							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
 							<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
+							 {{#unregistered}}
 							<li class="menu-btn"><a href="/BiblioSpring/Login"
 								class="login">Ingresar</a></li> 
-								
-								{{#admin}}
-							</li>
-							<li><a href="/BiblioSpring/Administrador">Administrador</a></li>
-							{{/admin}} {{#user}}
-							<li><a  href="/BiblioSpring/Login">Iniciar
-									sesión</a></li> {{/user}} 
+								{{/unregistered}}
+								 {{#registered}}
+							<li class="menu-btn"><a href="/BiblioSpring/Logout"
+								class="login">Salir</a></li>  
+								 {{/registered}}
+								 {{#admin}}   
+								<li><a href="/BiblioSpring/Administrador">Admin</a></li> 
+								{{/admin}}     
 						</ul>
 					</div>
 				</div>
@@ -68,7 +69,7 @@
 		</div>
 	</header>
 	<!-- Header Area End -->
-
+ 
 	<!-- Page Title Starts -->
 	<div class="page-title page-title-blog text-center">
 		<div class="container">
