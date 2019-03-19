@@ -37,11 +37,11 @@
 
 **Modelo UML:**
 
-![UML](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/UML_FASE2_BIBLIOSPRING.png?raw=true)    
+![UML](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/UML_FASE3.jpg?raw=true)    
 
 **Diagrama de clases:**
 
-![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/diagramaClasesDAD.jpg?raw=true)
+![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/diagramaClasesDAD_fase3.jpg?raw=true)
       
 **Modelo Entidad-Relación:**
 
