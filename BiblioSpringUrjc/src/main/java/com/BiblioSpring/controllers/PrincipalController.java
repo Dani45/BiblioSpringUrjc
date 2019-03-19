@@ -32,7 +32,13 @@ public class PrincipalController {
 	@Autowired
 	private ContactosRepository repositoryContacto;
 	@Autowired
-	private UserRepository userRepository;		
+	private UserRepository userRepository;	
+	@Autowired
+	private FanzinesRepository repositoryFanzine;
+	@Autowired
+	private PeliculasRepository repositoryPelicula;
+	@Autowired
+	private RevistasRepository repositoryRevista;
 	
 	
 	@PostMapping(value = "/register")
@@ -281,6 +287,42 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 		model.addAttribute("token", token.getToken());
 
 		return "/Logout";
+	}
+	
+	@RequestMapping("/BiblioSpring/Fanzine")
+	public String Fanzine(Model model, HttpServletRequest request) {
+
+		model.addAttribute("Fanzine", repositoryFanzine.findAll());
+		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
+
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "Fanzine";
+	}
+	
+	@RequestMapping("/BiblioSpring/Pelicula")
+	public String Pelicula(Model model, HttpServletRequest request) {
+
+		model.addAttribute("Pelicula", repositoryPelicula.findAll());
+		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
+
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "Pelicula";
+	}
+	
+	@RequestMapping("/BiblioSpring/Revista")
+	public String Revista(Model model, HttpServletRequest request) {
+
+		model.addAttribute("Revista", repositoryRevista.findAll());
+		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
+
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "Revista";
 	}
 
 }
