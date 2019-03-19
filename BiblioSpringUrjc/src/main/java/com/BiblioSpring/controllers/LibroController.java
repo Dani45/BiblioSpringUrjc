@@ -2,6 +2,7 @@ package com.BiblioSpring.controllers;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -91,7 +92,19 @@ public class LibroController {
 	@GetMapping("/BiblioSpring/Libro/nuevo")
 	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
 			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
-			Categoria categorias, Libro libros2, HttpServletRequest request) {
+			Categoria categorias, Libro libros2, HttpServletRequest request,HttpSession usuario) {
+		if(usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);		
+
+		}
+		if(usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);		
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		try {
 
 			Categoria cat = repository2.findByArea(area);
@@ -113,21 +126,8 @@ public class LibroController {
 			e.printStackTrace();
 		}
 
-		return "libro_guardado";
+		return "Index";
 
-	}
-
-	// vizualizar todos los libros añadidos
-
-	// @RequestMapping("/ver_libro")
-
-	@GetMapping("/BiblioSpring/Libro/ver_libro")
-	public String viewLibro(Model model, @RequestParam String nombre, HttpServletRequest request) {
-
-		model.addAttribute("libros", repository.findByNombre(nombre).get());
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
-		return "librodb";
 	}
 
 	// añadido para enlaces de libro
