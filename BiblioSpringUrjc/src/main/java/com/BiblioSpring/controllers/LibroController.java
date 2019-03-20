@@ -28,16 +28,17 @@ public class LibroController {
 
 	@PostConstruct
 	public void init() {
-		Libro l1=new Libro("LA SOCIEDAD DE LOS SOÑADORES INVOLUNTARIOS", "AGUALUSA, JOSÉ EDUARDO", "Madrid",("01/02/2018"));
-		Libro l2=new Libro("LAS LÁGRIMAS", "QUIGNARD, PASCAL", "Madrid",("01/02/2017"));
-		Libro l3=new Libro("ASESINOS DE SERIES", "SANCHEZ, ROBERTO", "Madrid", ("01/02/2017"));
-		Libro l4=new Libro("ALEACIÓN DE LEY", "SANDERSON, BRANDON", "Madrid", ("01/02/2017"));
-		Libro l5=new Libro("LA LEYENDA DE LA ISLA SIN VOZ", "MONTFORT", "Madrid",("01/02/2017"));
-		Libro l6=new Libro("SECRETOS IMPERFECTOS", "HJORTH,MICHAEL", "Madrid", ("01/02/2017"));
-		Libro l7=new Libro("BLUE", "STEEL, DANIELLE", "Madrid", ("01/02/2017"));
-		Libro l8=new Libro("MÁS DE TI", "SHERIDAN, MIA", "Madrid", ("01/02/2017"));
-		Libro l9=new Libro("EL CEREBRO DEL INVERSOR", "BERMEJO, PEDRO", "Madrid", ("01/02/2017"));
-		Libro l0=new Libro("QUIÉN SE HA LLEVADO MI MÁSTER", "FUENTES, TOMÁS", "Madrid", ("01/02/2017"));
+		Libro l1 = new Libro("LA SOCIEDAD DE LOS SOÑADORES INVOLUNTARIOS", "AGUALUSA, JOSÉ EDUARDO", "Madrid",
+				("01/02/2018"));
+		Libro l2 = new Libro("LAS LÁGRIMAS", "QUIGNARD, PASCAL", "Madrid", ("01/02/2017"));
+		Libro l3 = new Libro("ASESINOS DE SERIES", "SANCHEZ, ROBERTO", "Madrid", ("01/02/2017"));
+		Libro l4 = new Libro("ALEACIÓN DE LEY", "SANDERSON, BRANDON", "Madrid", ("01/02/2017"));
+		Libro l5 = new Libro("LA LEYENDA DE LA ISLA SIN VOZ", "MONTFORT", "Madrid", ("01/02/2017"));
+		Libro l6 = new Libro("SECRETOS IMPERFECTOS", "HJORTH,MICHAEL", "Madrid", ("01/02/2017"));
+		Libro l7 = new Libro("BLUE", "STEEL, DANIELLE", "Madrid", ("01/02/2017"));
+		Libro l8 = new Libro("MÁS DE TI", "SHERIDAN, MIA", "Madrid", ("01/02/2017"));
+		Libro l9 = new Libro("EL CEREBRO DEL INVERSOR", "BERMEJO, PEDRO", "Madrid", ("01/02/2017"));
+		Libro l0 = new Libro("QUIÉN SE HA LLEVADO MI MÁSTER", "FUENTES, TOMÁS", "Madrid", ("01/02/2017"));
 		repository.save(l1);
 		repository.save(l2);
 		repository.save(l3);
@@ -49,8 +50,8 @@ public class LibroController {
 		repository.save(l9);
 		repository.save(l0);
 		Categoria c1 = new Categoria("informatica");
-		Categoria c2=new Categoria("Literatura");
-		Categoria c3=new Categoria("Administracion");
+		Categoria c2 = new Categoria("Literatura");
+		Categoria c3 = new Categoria("Administracion");
 		l1.getCategorias().add(c2);
 		l2.getCategorias().add(c2);
 		l3.getCategorias().add(c2);
@@ -63,9 +64,9 @@ public class LibroController {
 		l0.getCategorias().add(c3);
 		repository2.save(c1);
 		repository2.save(c2);
-		repository2.save(c3);	
+		repository2.save(c3);
 	}
-	
+
 	// @GetMapping("/AddLibro")
 
 	@RequestMapping("/BiblioSpring/Libro/AddLibro")
@@ -77,28 +78,27 @@ public class LibroController {
 
 		return "AddLibro";
 	}
-/*
-	@RequestMapping("/BiblioSpring/Libro/nuevoLibro")
-	public String addlibro(Model model, Pageable page, HttpServletRequest request) {
-
-		model.addAttribute("libro", repository.findAll(page));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
-
-		return "nuevoLibro";
-	}
-*/
+	/*
+	 * @RequestMapping("/BiblioSpring/Libro/nuevoLibro") public String
+	 * addlibro(Model model, Pageable page, HttpServletRequest request) {
+	 * 
+	 * model.addAttribute("libro", repository.findAll(page));
+	 * model.addAttribute("admin", request.isUserInRole("ADMIN"));
+	 * model.addAttribute("user", request.isUserInRole("USER"));
+	 * 
+	 * return "nuevoLibro"; }
+	 */
 
 	@GetMapping("/BiblioSpring/Libro/nuevo")
 	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
 			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
-			Categoria categorias, Libro libros2, HttpServletRequest request,HttpSession usuario) {
-		if(usuario.getAttribute("registered") == null) {
-			usuario.setAttribute("registered", false);		
+			Categoria categorias, Libro libros2, HttpServletRequest request, HttpSession usuario) {
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
 
 		}
-		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
 
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
@@ -136,6 +136,7 @@ public class LibroController {
 
 	@GetMapping("/BiblioSpring/Libro/{idLibro}")
 	public String verIndependiente(Model model, @PathVariable long idLibro, HttpServletRequest request) {
+
 		model.addAttribute("libros", repository.findById(idLibro).get());
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
