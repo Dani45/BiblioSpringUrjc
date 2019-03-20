@@ -6,6 +6,7 @@ import com.BiblioSpring.entity.Revista;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.BiblioSpring.entity.Alternativa;
 import com.BiblioSpring.entity.Fanzine;
+import com.BiblioSpring.entity.Pelicula;
 import com.BiblioSpring.repository.AlternativasRepository;
 import com.BiblioSpring.repository.RevistasRepository;
 
@@ -41,6 +43,25 @@ public class RevistaController {
 		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "ver_Revista";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Revista/DeleteRevista")
+	public String EliminarRevista(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "DeleteRevista";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Revista/Revista_borrada")
+	public String revistaBorrada(Model model, HttpServletRequest request, @RequestParam String nombre, Revista revista) {
+
+		model.addAttribute("revistas", repository.deleteByNombre(nombre));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "revista_borrada";
 	}
 	
 	@RequestMapping("/BiblioSpring/Revista/AddRevista")

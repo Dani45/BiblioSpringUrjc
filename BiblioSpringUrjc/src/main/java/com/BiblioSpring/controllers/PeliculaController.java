@@ -8,6 +8,7 @@ import com.BiblioSpring.entity.Pelicula;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -71,13 +72,24 @@ public class PeliculaController {
 
 		return "ver_Pelicula";
 	}
-	/*
-	 * @RequestMapping("/Pelicula")
-	public String Pelicula(Model model, Pageable page) {
-		model.addAttribute("alternativas", repositoryAlt.findAll(page));
-		return "Pelicula";
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Pelicula/DeletePelicula")
+	public String EliminarPelicula(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "DeletePelicula";
 	}
-		
-	 */
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Pelicula/Pelicula_borrada")
+	public String peliculaBorrada(Model model, HttpServletRequest request, @RequestParam String nombre, Pelicula pelicula) {
+
+		model.addAttribute("peliculas", repository.deleteByNombre(nombre));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "pelicula_borrada";
+	}
 
 }

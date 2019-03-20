@@ -6,6 +6,7 @@ import com.BiblioSpring.entity.Fanzine;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -46,6 +47,25 @@ public class FanzineController {
 		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "ver_Fanzine";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Fanzine/DeleteFanzine")
+	public String EliminarFanzine(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "DeleteFanzine";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Fanzine/Fanzine_borrado")
+	public String fanzineBorrado(Model model, HttpServletRequest request, @RequestParam String nombre, Fanzine fanzine) {
+
+		model.addAttribute("fanzines", repository.deleteByNombre(nombre));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "fanzine_borrado";
 	}
 	
 	
