@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// Private pages (all other pages)
 		http.authorizeRequests().antMatchers("/BiblioSpring/Login").permitAll();
 		http.authorizeRequests().antMatchers("/new_user").permitAll();
+		http.authorizeRequests().antMatchers("/register").permitAll();
 		http.authorizeRequests().antMatchers("/BiblioSpring/loginError").permitAll();
 		
         http.authorizeRequests().antMatchers("/BiblioSpring/Prestamo").hasAnyRole("USER");

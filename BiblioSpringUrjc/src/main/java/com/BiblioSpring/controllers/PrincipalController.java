@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import com.BiblioSpring.entity.Email;
 import com.BiblioSpring.entity.User;
@@ -53,17 +54,18 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			System.out.println(email);
 			
 			User nuevoUsuario = new User (name, password,email,  "ROLE_USER");
-			Email nuevoEmail = new Email(name,email);
+			
 			userRepository.save(nuevoUsuario);
 			model.addAttribute("registered", usuario.getAttribute("registered"));
 			boolean aux = !(Boolean) usuario.getAttribute("registered");
 			model.addAttribute("unregistered", aux);
-			/*
+			
 		    String url= "http://localhost:8070/mail/";
+		    Email nuevoEmail = new Email(name,email);
 		    RestTemplate rest = new RestTemplate();	
-		    rest.postForLocation(url, nuevoEmail);
+		    rest.postForEntity(url, nuevoEmail, String.class);
 		    System.out.println("Datos enviados!");
-			*/
+			
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 			return ("Index");
