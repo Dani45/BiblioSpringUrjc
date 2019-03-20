@@ -143,5 +143,14 @@ public class LibroController {
 
 		return "librodb";
 	}
+	@RequestMapping("/BiblioSpring/Libro/ver_libro")
+	public String verFanzinePorNombre(Model model, HttpServletRequest request, @RequestParam String nombre) {
+
+		model.addAttribute("libros", repository.findByNombre(nombre).get());
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+
+		return "ver_libro";
+	}
 
 }
