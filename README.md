@@ -47,10 +47,21 @@
 
 ![Diagrama_de_clases](https://github.com/agustinlopezg/bibliotecaWebUrjc_DAD/blob/master/MODELO_E_R.png?raw=true)
      
-**Descripción de las pantallas principales:** (a falta de mejorar)
+**Descripción de las pantallas principales:** 
 
 <li> Libro: Se puede buscar los libros que hay en la biblioteca por diferentes filtros: título y categoría </li>
 <li>Usuario: Ingresas a la aplicación mediane un LogIn en el que se tiene que escribir los datos (nombre y contraseña) para acceder.</li>
 <li>Categoría:Consulta todos los libros de la biblioteca repartidos en categorías para una mayor facilidad de uso</li>
 <li>Préstamo: Accede a la posibilidad de entrar en el espacio personal del usuario premium para renovar el carné anual, cambiar los datos personales, etc.</li>
 <li>Alternativa: Consulta los fanzines, revistas y películas que hay en la biblioteca. </li>
+
+**Instrucciones precisas para desplegar la aplicación:**
+<li> Compilación: 
+      1. Botón derecho sobre el proyecto. 
+      2. Clickar sobre 'Run as'
+      3. Clickar sobre Spring Boot Application</li>
+<li> Cómo subir el .JAR:  
+      1. En consola, escribir 'svn clean'
+      2. En consola, escribir 'svn install'
+      3. En consola, escribir 'java -jar executableJar.jar'</li>
+<li> ¿Qué hace falta instalar?: Eclipse STS 4, Java 8, MySQL Workbench 8.0 y VirtualBox </li>
