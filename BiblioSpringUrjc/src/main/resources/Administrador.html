@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- Page Title -->
+<title>BiblioURJC</title>
+
+<!-- Logo -->
+<link rel="shortcut icon" href="/assets/images/logo/urjclogo.png"
+	type="image/x-icon">
+
+
+<!-- CSS Files -->
+
+<link rel="stylesheet" href="/assets/css/animate-3.7.0.css">
+<link rel="stylesheet" href="/assets/css/font-awesome-4.7.0.min.css">
+<link rel="stylesheet" href="/assets/fonts/flat-icon/flaticon.css">
+<link rel="stylesheet" href="/assets/css/bootstrap-4.1.3.min.css">
+<link rel="stylesheet" href="/assets/css/owl-carousel.min.css">
+<link rel="stylesheet" href="/assets/css/nice-select.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<!-- Preloader Starts -->
+	<div class="preloader">
+		<div class="spinner"></div>
+	</div>
+	<!-- Preloader End -->
+
+	<!-- Header Area Starts -->
+	<header class="header-area main-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2">
+					<div class="logo-area">
+						<a href="/"><img src="/assets/images/logo/urjclogo.png"
+							alt="logo"></a>
+					</div>
+				</div>
+				<div class="col-lg-10">
+					<div class="custom-navbar">
+						<span></span> <span></span> <span></span>
+					</div>
+					<div class="main-menu">
+						<ul>
+							<li><a href="/BiblioSpring/Libro">Libro</a></li>
+							<li><a href="/BiblioSpring/Categoria">Categoria</a></li>
+							<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
+							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
+							<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
+							{{#unregistered}}
+							<li class="menu-btn"><a href="/BiblioSpring/Login"
+								class="login">Ingresar</a></li> 
+								{{/unregistered}}
+								 {{#registered}}
+							<li class="menu-btn"><a href="/BiblioSpring/Logout"
+								class="login">Salir</a></li>  
+								 {{/registered}}
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header Area End -->
+	<!-- Feature Area Starts -->
+	<section class="feature-area section-padding2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="single-feature mb-4 mb-lg-0">
+						<h4>Añadir Libro nuevo</h4>
+						<p class="py-3">Podrás añadir nuevo libro</p>
+						<a href="/BiblioSpring/Libro/AddLibro" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature mb-4 mb-lg-0">
+						<h4>Añadir Nueva Categoría</h4>
+						<p class="py-3">Podrás añadir nuevo tipo de categoría</p>
+						<a href="/BiblioSpring/Categoria/AddCategoria" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Añadir Nuevo  pelicula</h4>
+						<p class="py-3">Añade las peliculas favoritas</p>
+						<a href="/BiblioSpring/Pelicula/AddPelicula" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Añadir Nuevo Fanzine</h4>
+						<p class="py-3">Añade los fanzines favoritos</p>
+						<a href="/BiblioSpring/Fanzine/AddFanzine" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Añadir Nueva Revista</h4>
+						<p class="py-3">Añade las revistas favoritas</p>
+						<a href="/BiblioSpring/Revista/AddRevista" class="secondary-btn">Añadir<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Eliminar Fanzine</h4>
+						<p class="py-3">Elimina los fanzines que quieras</p>
+						<a href="/BiblioSpring/Fanzine/DeleteFanzine" class="secondary-btn">Eliminar<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Eliminar Pelicula</h4>
+						<p class="py-3">Elimina las peliculas que quieras</p>
+						<a href="/BiblioSpring/Pelicula/DeletePelicula" class="secondary-btn">Eliminar<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<h4>Eliminar Revista</h4>
+						<p class="py-3">Elimina las revistas que quieras</p>
+						<a href="/BiblioSpring/Revista/DeleteRevista" class="secondary-btn">Eliminar<span
+							class="flaticon-next"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Feature Area End -->
+
+
+
+
+
+	<!-- Footer Area Starts -->
+	<footer class="footer-area section-padding">
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-6offset-xl-1 col-lg-6">
+						<div class="single-widget-home mb-5 mb-lg-0">
+							<h3 class="mb-4">Mejora BiblioSpring</h3>
+							<p class="mb-4">Envíanos tu opinión sobre la web y ayúdanos a
+								mejorar.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="mb-4" align="right">Encóntranos también aquí</h3>
+						<div class="social-icons">
+							<!--Facebook-->
+							<a href="#"><button type="button" class="btn btn-fb">
+									<i class="fa fa-facebook-f pr-1"></i> Facebook
+								</button></a>
+							<!--Twitter-->
+							<a href="#"><button type="button" class="btn btn-tw">
+									<i class="fa fa-twitter"></i>
+								</button></a>
+							<!--Instagram-->
+							<a href="#"><button type="button" class="btn btn-ins">
+									<i class="fa fa-instagram"></i>
+								</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<span> BiblioSpring &copy; <script>
+							document.write(new Date().getFullYear());
+						</script> | Creado por Agustín López, Daniel Luje y Chengjian Li
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Area End -->
+
+
+	<!-- Javascript -->
+	<script src="/assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+	<script src="/assets/js/vendor/wow.min.js"></script>
+	<script src="/assets/js/vendor/owl-carousel.min.js"></script>
+	<script src="/assets/js/vendor/jquery.nice-select.min.js"></script>
+	<script src="/assets/js/vendor/ion.rangeSlider.js"></script>
+	<script src="/assets/js/main.js"></script>
+</body>
+</html>
