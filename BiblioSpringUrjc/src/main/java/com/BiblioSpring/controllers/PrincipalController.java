@@ -56,10 +56,10 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			User nuevoUsuario = new User (name, password,email,  "ROLE_USER");
 			
 			userRepository.save(nuevoUsuario);
-			model.addAttribute("registered", usuario.getAttribute("registered"));
-			boolean aux = !(Boolean) usuario.getAttribute("registered");
-			model.addAttribute("unregistered", aux);
 			
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", usuario.getAttribute("registered"));
+			model.addAttribute("registered",aux );
 		    String url= "http://localhost:8070/mail/";
 		    Email nuevoEmail = new Email(name,email);
 		    RestTemplate rest = new RestTemplate();	
@@ -278,7 +278,7 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 
-		return "/BiblioSpring/Login";
+		return "Login";
 	}
 
 	@GetMapping("/BiblioSpring/Logout")

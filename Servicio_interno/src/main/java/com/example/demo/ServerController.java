@@ -1,4 +1,5 @@
 package com.example.demo;
+import java.security.Security;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -14,46 +15,64 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sun.mail.smtp.SMTPTransport;
 
 
 
 @RestController
 public class ServerController {
 
-    @Autowired
-	private JavaMailSender javaMailSender;
 
     private final String usrname = "bibliospringurjc@gmail.com";
 	@PostMapping(value="/mail/")
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Boolean> sendMail(@RequestBody Email mail) {
-		String name = mail.getUserName();
-		String email = mail.getUserMail();
-		
-		System.out.println("Datos correctamente recibidos!");
 		System.out.println("Message received from web : " + mail);
 		try {
-			// Get a Properties object
-			
+			Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+			final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-		        MimeMessage message = javaMailSender.createMimeMessage();
-				MimeMessageHelper helper;
-				
-				helper = new MimeMessageHelper(message,true);
-				
-				message.setFrom(new InternetAddress(usrname));
-				helper.setTo(email); //Indicamos donde se dirige el email (TO)
-				helper.setSubject("Welcome to our web");
-				helper.setText("Su cuenta se ha realizado con exito para el correo " + email + " podra acceder a nuestros servicios de compra con el usuario y contraseña que haya metido, que lo disfrute " +name+ "!");
-				
-				javaMailSender.send(message);
+			Properties props = System.getProperties();
+			props.setProperty("mail.smtps.host", "smtp.gmail.com");
+			props.setProperty("mail.smtps.username", usrname);
+			props.setProperty("mail.smtps.password", "wF3-Yt9-Vcn-GYx");
+			props.setProperty("mail.smtp.socketFactory.fallback", "false");
+			props.setProperty("mail.smtp.port", "465");
+			props.setProperty("mail.smtp.socketFactory.port", "465");
+			props.setProperty("mail.smtps.auth", "true");
+			props.put("mail.smtps.quitwait", "false");
+
+			Session session = Session.getInstance(props, null);
+			
+			// String que portará el mensaje a enviar
+			final MimeMessage msg = new MimeMessage(session);
+
+			// -- Set the FROM and TO fields --
+			// emisor
+			msg.setFrom(new InternetAddress(usrname));
+			// receptor
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail.getUserMail(), false));
+			// mensaje del correo
+			msg.setSubject("Welcome to BiblioSpringUrjc!");
+			msg.setText(
+					"Hi " + mail.getUserName()
+							+ "\n\n Thank you for colaborate on our web page. "
+							+ "We hope you'll enjoy it as much as we enjoyed developing it.","utf-8");
+			
+			SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
+			// se inicia sesión en el correo
+			t.connect("smtp.gmail.com", usrname, "movimientoNaranja");
+			// se añade el mensaje a enviar
+			t.sendMessage(msg, msg.getAllRecipients());
+			// se cierra conexión
+			t.close();
 			System.out.println("correo enviado con exito");
-		} catch (MessagingException e) {
-			 System.out.println("e="+e);
-	            e.printStackTrace();
-	            throw new RuntimeException(e);
+		} catch (MessagingException ex) {
+			System.out.println(ex);
 		}
-		// se notifica el correcto envío
 		return new ResponseEntity <Boolean> (true, HttpStatus.OK);
 	}
 
