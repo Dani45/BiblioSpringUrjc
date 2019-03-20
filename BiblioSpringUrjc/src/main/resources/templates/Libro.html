@@ -52,7 +52,9 @@
 								<li><a href="/BiblioSpring/Libro">Libro</a></li>
 								<li><a href="/BiblioSpring/Categoria">Categoria</a></li>
 								<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
-								<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
+								{{#noadmin}}
+							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
+							{{/noadmin}}
 								<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
 								 {{#unregistered}}
 							<li class="menu-btn"><a href="/BiblioSpring/Login"
@@ -62,6 +64,9 @@
 							<li class="menu-btn"><a href="/BiblioSpring/Logout"
 								class="login">Salir</a></li>  
 								 {{/registered}}
+								 {{#admin}}   
+								<li><a href="/BiblioSpring/Administrador">Admin</a></li> 
+								{{/admin}}     
 							</ul>
 						</div>
 					</div>

@@ -95,12 +95,13 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			usuario.setAttribute("registered", false);		
 
 		}
-		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
-
+		if(usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		}else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
+		
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Libro", repositoryLibro.findAll());
@@ -120,12 +121,12 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			usuario.setAttribute("registered", false);		
 
 		}
-		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
-
+		if(usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		}else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Libro", repositoryLibro.findAll());
@@ -143,12 +144,12 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			usuario.setAttribute("registered", false);		
 
 		}
-		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
-
+		if(usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		}else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Categoria", repositoryCategoria.findAll(page));
@@ -165,12 +166,12 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			usuario.setAttribute("registered", false);		
 
 		}
-		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
-
+		if(usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		}else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
@@ -188,11 +189,9 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 
 		}
 		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
-
+			model.addAttribute("admin", usuario.getAttribute("admin"));
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Prestamo", repositoryContacto.findAll());
@@ -209,12 +208,12 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			usuario.setAttribute("registered", false);		
 
 		}
-		if(usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);		
-
+		if(usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		}else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
 		}
 		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -265,6 +264,8 @@ public String registroCliente(Model model, HttpSession usuario,HttpServletReques
 			if(usur.getRoles().contains("ROLE_ADMIN")) {
 				usuario.setAttribute("admin", true);
 				model.addAttribute("admin", usuario.getAttribute("admin"));
+				boolean aux2 = !(Boolean) usuario.getAttribute("admin");
+				model.addAttribute("noadmin", aux2);
 			}
 			model.addAttribute("registered", usuario.getAttribute("registered"));
 			boolean aux = !(Boolean) usuario.getAttribute("registered");

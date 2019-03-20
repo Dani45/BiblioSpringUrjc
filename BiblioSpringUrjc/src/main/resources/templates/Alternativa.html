@@ -50,7 +50,9 @@
 								<li><a href="/Libro">Libro</a></li>
 								<li><a href="/Categoria">Categoria</a></li>
 								<li><a href="/Alternativa">Alternativas</a></li>
-								<li><a href="/Prestamo">Prestamo</a></li>
+								{{#noadmin}}
+							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
+							{{/noadmin}}
 								<li><a href="/Contacto">Contacto</a></li>
 								<li><a href="/BiblioSpring/Fanzine">Tratar con Fanzine</a></li>
 								<li><a href="/BiblioSpring/Pelicula">Tratar con Pelicula</a></li>

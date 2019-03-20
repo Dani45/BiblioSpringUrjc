@@ -144,13 +144,37 @@ public class LibroController {
 		return "librodb";
 	}
 	@RequestMapping("/BiblioSpring/Libro/ver_libro")
-	public String verFanzinePorNombre(Model model, HttpServletRequest request, @RequestParam String nombre) {
+	public String verFanzinePorNombre(Model model, HttpServletRequest request, @RequestParam String nombre,HttpSession usuario) {
 
-		model.addAttribute("libros", repository.findByNombre(nombre).get());
+		Libro l1=repository.findByNombre(nombre).get();
+		if(l1==null) {
+			if(usuario.getAttribute("registered") == null) {
+				usuario.setAttribute("registered", false);		
+
+			}
+			if(usuario.getAttribute("admin") == null) {
+				model.addAttribute("noadmin", true);
+			}else {
+				model.addAttribute("admin", usuario.getAttribute("admin"));
+			}
+			model.addAttribute("registered", usuario.getAttribute("registered"));
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", aux);
+			model.addAttribute("Libro", repository.findAll());
+			model.addAttribute("Categoria", repository2.findAll());
+
+			// model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			// model.addAttribute("user", request.isUserInRole("USER"));
+
+			return "Libro";
+		}else {
+		model.addAttribute("libros",l1);
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "ver_libro";
+		}
+		
 	}
 
 }
