@@ -2,8 +2,10 @@ package com.example.demo;
 import java.security.Security;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -37,15 +39,18 @@ public class ServerController {
 
 			Properties props = System.getProperties();
 			props.setProperty("mail.smtps.host", "smtp.gmail.com");
-			props.setProperty("mail.smtps.username", usrname);
-			props.setProperty("mail.smtps.password", "wF3-Yt9-Vcn-GYx");
 			props.setProperty("mail.smtp.socketFactory.fallback", "false");
-			props.setProperty("mail.smtp.port", "465");
-			props.setProperty("mail.smtp.socketFactory.port", "465");
+			props.setProperty("mail.smtp.port", "587");
+			props.setProperty("mail.smtp.socketFactory.port", "587");
 			props.setProperty("mail.smtps.auth", "true");
 			props.put("mail.smtps.quitwait", "false");
 
-			Session session = Session.getInstance(props, null);
+			Session session = Session.getInstance(props, new Authenticator() {
+				@Override
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	                return new PasswordAuthentication(usrname, "esgrpklmnddxgkue");
+	            }
+			});
 			
 			// String que portará el mensaje a enviar
 			final MimeMessage msg = new MimeMessage(session);
