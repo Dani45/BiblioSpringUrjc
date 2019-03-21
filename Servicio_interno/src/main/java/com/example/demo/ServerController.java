@@ -34,9 +34,6 @@ public class ServerController {
 	public ResponseEntity<Boolean> sendMail(@RequestBody Email mail) {
 		System.out.println("Message received from web : " + mail);
 		try {
-			Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-			final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-
 			Properties props = System.getProperties();
 			props.setProperty("mail.smtps.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.socketFactory.fallback", "false");

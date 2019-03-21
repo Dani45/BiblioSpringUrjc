@@ -13,9 +13,11 @@
 	<artifactId>BiblioSpringUrjc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BiblioSpringUrjc</name>
+	<packaging>jar</packaging>
 	<description>BiblioSpring URJC</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -61,6 +63,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 
 </project>
