@@ -21,6 +21,7 @@ import com.BiblioSpring.repository.LibrosRepository;
 
 @Controller
 public class LibroController {
+	
 	@Autowired
 	private LibrosRepository repository;
 	@Autowired
@@ -67,7 +68,6 @@ public class LibroController {
 		repository2.save(c3);
 	}
 
-	// @GetMapping("/AddLibro")
 
 	@RequestMapping("/BiblioSpring/Libro/AddLibro")
 	public String AnadirLibro(Model model, Pageable page, HttpServletRequest request) {
