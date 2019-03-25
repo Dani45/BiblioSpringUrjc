@@ -61,6 +61,7 @@ public class CategoriaController {
 	@GetMapping("/BiblioSpring/Categoria/{idCategoria}")
 	public String verIndependiente(Model model, @PathVariable long idCategoria, HttpServletRequest request) {
 		model.addAttribute("categorias", repository.findById(idCategoria).get());
+		model.addAttribute("libros", repository.findAll());
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
 
