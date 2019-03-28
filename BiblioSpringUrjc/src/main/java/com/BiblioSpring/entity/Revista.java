@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Revista {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idRevista;
 	@Column
 	private String nombre;
@@ -18,8 +18,6 @@ public class Revista {
 	private Integer numero;
 	@Column
 	private Integer ano;
-	@OneToOne
-	private Alternativa alternativa;
 
 	public Long getIdRevista() {
 		return idRevista;
@@ -51,14 +49,6 @@ public class Revista {
 
 	public void setAno(Integer ano) {
 		this.ano = ano;
-	}
-
-	public Alternativa getAlternativa() {
-		return alternativa;
-	}
-
-	public void setAlternativa(Alternativa alternativa) {
-		this.alternativa = alternativa;
 	}
 
 	@Override

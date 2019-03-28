@@ -412,7 +412,7 @@ keyframes sk-scaleout { 0%{
 	width: 100%;
 	height: 640px;
 	background-color: #b0b0b0;
-	background-image: url("../images/banner-bg.jpg");
+	background-image: url("../images/maxresdefault.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover
@@ -1278,7 +1278,15 @@ keyframes sk-scaleout { 0%{
 	position: relative;
 	z-index: 1
 }
-
+.header-area.single-page2 {
+	background-color: #b0b0b0;
+	background-image: url("../images/maxresdefault.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	z-index: 1
+}
 .header-area.single-page:after {
 	content: '';
 	position: absolute;

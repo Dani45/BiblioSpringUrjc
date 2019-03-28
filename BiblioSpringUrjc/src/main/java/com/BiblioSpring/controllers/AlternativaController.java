@@ -4,18 +4,25 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.BiblioSpring.entity.Alternativa;
 import com.BiblioSpring.entity.Categoria;
-import com.BiblioSpring.repository.AlternativasRepository;
+import com.BiblioSpring.entity.Fanzine;
+import com.BiblioSpring.entity.Pelicula;
+import com.BiblioSpring.entity.Revista;
+import com.BiblioSpring.repository.FanzinesRepository;
+import com.BiblioSpring.repository.PeliculasRepository;
+import com.BiblioSpring.repository.RevistasRepository;
 
 
 @Controller
@@ -23,89 +30,230 @@ public class AlternativaController {
 	
 	
 	@Autowired
-	private AlternativasRepository repository;
+	private FanzinesRepository repositoryFanzine;
+	@Autowired
+	private PeliculasRepository repositoryPelicula;
+	@Autowired
+	private RevistasRepository repositoryRevista;
 
+	
 	@SuppressWarnings("deprecation")
 	@PostConstruct
 	public void init() {
-		repository.save(new Alternativa("fanzine"));
-		repository.save(new Alternativa("pelicula"));
-		repository.save(new Alternativa("revista"));
+		repositoryFanzine.save(new Fanzine("OnePieze",2000, 3, "Japon"));
+		repositoryFanzine.save(new Fanzine("Naruto",1992, 149, "Japon"));
+		repositoryFanzine.save(new Fanzine("Dragon Ball",1992, 149, "Japon"));
+		repositoryPelicula.save(new Pelicula("Avatar",2000,"Austria"));
+		repositoryPelicula.save(new Pelicula("La última canción",2008, "Inglaterra"));
+		repositoryRevista.save(new Revista("Pronto",1964,1));
 	}
 	
 	@RequestMapping("/BiblioSpring/Alternativa/buscar_Alternativa")
-	public String verAlternativaPorNombre(Model model, HttpServletRequest request, @RequestParam String alternativa) {
+	public String verAlternativaPorNombre(Model model, HttpServletRequest request,@RequestParam int valor, @RequestParam String nombre,HttpSession usuario) {
+			if(usuario.getAttribute("registered") == null) {
+				usuario.setAttribute("registered", false);		
 
-		model.addAttribute("alternativas", repository.findByAlternativa(alternativa));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+			}
+			if(usuario.getAttribute("admin") == null) {
+				model.addAttribute("noadmin", true);
+			}else {
+				model.addAttribute("admin", usuario.getAttribute("admin"));
+			}
+			model.addAttribute("registered", usuario.getAttribute("registered"));
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", aux);
+		if(valor==2) {
+			model.addAttribute("Revista",repositoryRevista.findByNombre(nombre).get());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("user", request.isUserInRole("USER"));
 
-		return "ver_Alternativa";
-	}
-	
-	
-	@RequestMapping("/BiblioSpring/Alternativa/ver_Alternativa")
-	public String viewAlternativa(Model model, Pageable page) {
+			return "ver_Revista";
+			
+			
+		}
+		if(valor==3) {
+			model.addAttribute("pelicula",repositoryPelicula.findByNombre(nombre).get());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("user", request.isUserInRole("USER"));
 
-		model.addAttribute("alternativas", repository.findAll(page));
-	
-		return "ver_Alternativa";
-	}
-	
-	
-	
-	
-	@RequestMapping("/BiblioSpring/Alternativa/AddAlternativa")
-	public String Addalternativa(Model model, Pageable page, HttpServletRequest request) {
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
-		model.addAttribute("alternativas", repository.findAll(page));
+			return "ver_Pelicula";
+		}
+		if(valor==4) {
+			model.addAttribute("fanzine",repositoryFanzine.findByNombre(nombre).get());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("user", request.isUserInRole("USER"));
 
-		return "AddAlternativa";
-	}
-	
-	@RequestMapping("/BiblioSpring/Alternativa/nueva")
-	public String nuevaAlternativa(Model model, Alternativa alternativa,HttpServletRequest request) { //, 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
-		repository.save(alternativa);
-		return "alternativa_guardada";
-	}
-	
-	/*
-	
-	
-	@RequestMapping("/ver_Alternativa")
-	public String viewAlternativa(Model model, Pageable page) {
+			return "ver_Fanzine";
+		}
 
-		model.addAttribute("alternativas", repository.findAll(page));
-	
-		return "ver_Alternativa";
-	}
-
-
-	@RequestMapping("/Alternativa")
-	public String Alternativa(Model model, Pageable page) {
-		
-		model.addAttribute("alternativas", repository.findAll(page));
 		return "Alternativa";
 	}
-	
+	@RequestMapping("/BiblioSpring/Pelicula/AddPelicula")
+	public String AnadirPelicula(Model model, Pageable page,HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		return "AddPelicula";
+	}
 
-	
-	@RequestMapping("/DeleteAlternativa")
-	public String eliminarAlternativa(Model model, Pageable page) {
+	@RequestMapping("/BiblioSpring/Pelicula/nueva")
+	public String nuevaPelicula(Model model, Pelicula pelicula,HttpServletRequest request, HttpSession usuario) {
 
-		model.addAttribute("alternativas", repository.findAll(page));
-		return "BorrarAltern";
+		repositoryPelicula.save(pelicula);
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+
+		return "Index";
+
 	}
 	
-	@RequestMapping("/Alternativa/delete")
-	public String alternativaEliminada(Model model, Long idAlternativa) {
-		repository.deleteById(idAlternativa);
+	@Transactional
+	@RequestMapping("/BiblioSpring/Pelicula/DeletePelicula")
+	public String EliminarPelicula(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "DeletePelicula";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Pelicula/Pelicula_borrada")
+	public String peliculaBorrada(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre, Pelicula pelicula) {
 
-		return "borradoAlternativa";
-	}*/
+		 repositoryPelicula.deleteByNombre(nombre);
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+
+		return "Index";
+	}
+	@Transactional
+	@RequestMapping("/BiblioSpring/Revista/DeleteRevista")
+	public String EliminarRevista(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "DeleteRevista";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Revista/Revista_borrada")
+	public String revistaBorrada(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre, Revista revista) {
+
+		 repositoryRevista.deleteByNombre(nombre);
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+
+		return "Index";
+		}
+	
+	@RequestMapping("/BiblioSpring/Revista/AddRevista")
+	public String AnadirRevista(Model model, Pageable page) {
+		return "AddRevista";
+	}
+
+	@RequestMapping("/BiblioSpring/Revista/nueva")
+	public String nuevaRevista(Model model, Revista revista,HttpSession usuario) {
+		repositoryRevista.save(revista);
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+		return "Index";
+		}
+
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Fanzine/DeleteFanzine")
+	public String EliminarFanzine(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "DeleteFanzine";
+	}
+	
+	@Transactional
+	@RequestMapping("/BiblioSpring/Fanzine/Fanzine_borrado")
+	public String fanzineBorrado(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre, Fanzine fanzine) {
+
+		 repositoryFanzine.deleteByNombre(nombre);
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+
+		return "Index";
+		}
+	
+	
+	@RequestMapping("/BiblioSpring/Fanzine/AddFanzine")
+	public String AnadirFanzine(Model model, Pageable page, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		return "AddFanzine";
+	}
+
+	@RequestMapping("/BiblioSpring/Fanzine/nuevo")
+	public String nuevoFanzine(Model model, Fanzine fanzine,HttpSession usuario, HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		repositoryFanzine.save(fanzine);
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") != null) {
+			usuario.setAttribute("admin", true);
+
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		model.addAttribute("admin", usuario.getAttribute("admin"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+		return "Index";
+	}
+	
 
 
 }

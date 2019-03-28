@@ -29,8 +29,6 @@ public class PrincipalController {
 	@Autowired
 	private CategoriasRepository repositoryCategoria;
 	@Autowired
-	private AlternativasRepository repositoryAlternativas;
-	@Autowired
 	private ContactosRepository repositoryContacto;
 	@Autowired
 	private UserRepository userRepository;
@@ -74,7 +72,7 @@ public class PrincipalController {
 			model.addAttribute("alert", "Usuario ya existente");
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
-			return ("/new_user");
+			return ("new_user");
 
 		}
 
@@ -107,7 +105,6 @@ public class PrincipalController {
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Libro", repositoryLibro.findAll());
 		model.addAttribute("Categoria", repositoryCategoria.findAll());
-		model.addAttribute("Alternativas", repositoryAlternativas.findAll());
 		model.addAttribute("Prestamo", repositoryContacto.findAll());
 
 		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -172,7 +169,6 @@ public class PrincipalController {
 		model.addAttribute("registered", usuario.getAttribute("registered"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
-		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
 
 		// model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		// model.addAttribute("user", request.isUserInRole("USER"));
@@ -290,39 +286,69 @@ public class PrincipalController {
 	}
 
 	@RequestMapping("/BiblioSpring/Fanzine")
-	public String Fanzine(Model model, HttpServletRequest request) {
+	public String Fanzine(Model model, HttpServletRequest request, HttpSession usuario) {
 
-		model.addAttribute("Fanzine", repositoryFanzine.findAll());
-		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
+		model.addAttribute("fanzine",repositoryFanzine.findAll());
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
 
+		}
+		if (usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		} else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
 
-		return "Fanzine";
+		return "ver_Fanzine";
 	}
 
 	@RequestMapping("/BiblioSpring/Pelicula")
-	public String Pelicula(Model model, HttpServletRequest request) {
+	public String Pelicula(Model model, HttpServletRequest request, HttpSession usuario) {
 
-		model.addAttribute("Pelicula", repositoryPelicula.findAll());
-		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
+		model.addAttribute("pelicula", repositoryPelicula.findAll());
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
 
+		}
+		if (usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		} else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
 
-		return "Pelicula";
+		return "ver_Pelicula";
 	}
 
 	@RequestMapping("/BiblioSpring/Revista")
-	public String Revista(Model model, HttpServletRequest request) {
+	public String Revista(Model model, HttpServletRequest request, HttpSession usuario) {
 
 		model.addAttribute("Revista", repositoryRevista.findAll());
-		model.addAttribute("Alternativa", repositoryAlternativas.findAll());
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
 
+		}
+		if (usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		} else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));
 
-		return "Revista";
+		return "ver_Revista";
 	}
 
 }

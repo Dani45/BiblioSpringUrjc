@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Fanzine {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idFanzine;
 	@Column
 	private String nombre;
@@ -21,8 +21,6 @@ public class Fanzine {
 	@Column
 	private String lugarPublicacion;
 
-	@OneToOne
-	private Alternativa alternativa;
 
 	public Fanzine() {
 		super();
@@ -87,12 +85,5 @@ public class Fanzine {
 		this.lugarPublicacion = lugarPublicacion;
 	}
 
-	public Alternativa getAlternativa() {
-		return alternativa;
-	}
-
-	public void setAlternativa(Alternativa alternativa) {
-		this.alternativa = alternativa;
-	}
 
 }
