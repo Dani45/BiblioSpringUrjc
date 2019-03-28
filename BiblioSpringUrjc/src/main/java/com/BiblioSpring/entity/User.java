@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
+@Table(name = "user")
 public class User {
 
 	@Id
@@ -27,8 +32,71 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
-	//private List<Libro> libros;
+	@OneToMany(mappedBy="user")
+	private List<Libro> libros = new ArrayList<Libro>();
+	
+	// comentarios publicados por el usuario
+	@OneToMany(mappedBy="user")
+	private List<Revista> revistas = new ArrayList<Revista>();
+	
+	// articulos publicados por el usuario
+	@OneToMany(mappedBy="user")
+	private List<Pelicula> peliculas = new ArrayList<Pelicula>();
+	@OneToMany(mappedBy="user")
+	private List<Fanzine> fancines = new ArrayList<Fanzine>();
 
+	public List<Libro> getLibros() {
+		return libros;
+	}
+
+	public void setLibros(List<Libro> libros) {
+		this.libros = libros;
+	}
+	public void addlibros(Libro libro) {
+        if (libros == null) {
+            libros = new ArrayList<>();
+        }
+        libros.add(libro);
+    }
+	public List<Revista> getRevistas() {
+		return revistas;
+	}
+
+	public void setRevistas(List<Revista> revistas) {
+		this.revistas = revistas;
+	}
+	public void addRevistas(Revista re) {
+        if (this.revistas == null) {
+            this.revistas = new ArrayList<>();
+        }
+        this.revistas.add(re);
+    }
+	public List<Pelicula> getPeliculas() {
+		return peliculas;
+	}
+
+	public void setPeliculas(List<Pelicula> peliculas) {
+		this.peliculas = peliculas;
+	}
+	public void addPeliculas(Pelicula p) {
+        if (this.peliculas == null) {
+            this.peliculas = new ArrayList<>();
+        }
+        this.peliculas.add(p);
+    }
+	public List<Fanzine> getFancines() {
+		return fancines;
+	}
+
+	public void setFancines(List<Fanzine> fancines) {
+		this.fancines = fancines;
+	}
+	public void addFancines(Fanzine faz) {
+        if (this.fancines == null) {
+            this.fancines = new ArrayList<>();
+        }
+        this.fancines.add(faz);
+    }
 	public User() {
 	}
 
@@ -39,19 +107,7 @@ public class User {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		//this.libros=new ArrayList<>();
 	}
-/*
-	public void addLibros(Libro l) {
-		this.libros.add(l);
-	}
-	
-	public List<Libro> getLibros() {
-		return libros;
-	}
 
-	public void setLibros(List<Libro> libros) {
-		this.libros = libros;
-	}
-*/
 	public String getEmail() {
 		return email;
 	}

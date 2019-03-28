@@ -9,7 +9,7 @@ import com.BiblioSpring.entity.Pelicula;
 import com.BiblioSpring.entity.Revista;
 
 public interface RevistasRepository extends JpaRepository<Revista,Long>, CrudRepository<Revista,Long>{
-	Optional<Revista> findByNombre(String nombre);
+	Revista findByNombre(String nombre);
 	Optional<Revista> findByAno(Integer ano);
 	Optional<Revista> deleteByNombre(String nombre);
 }

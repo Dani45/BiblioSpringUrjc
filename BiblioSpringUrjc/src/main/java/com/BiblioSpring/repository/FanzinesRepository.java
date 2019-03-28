@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.BiblioSpring.entity.Fanzine;
 
 public interface FanzinesRepository extends JpaRepository<Fanzine, Long> , CrudRepository<Fanzine,Long>{
-	Optional<Fanzine> findByNombre(String nombre);
+	Fanzine findByNombre(String nombre);
 	Optional<Fanzine> findByLugarPublicacion(String lugarPublicacion);
 	Optional<Fanzine> deleteByNombre(String nombre);
 }

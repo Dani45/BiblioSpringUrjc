@@ -1,11 +1,14 @@
 package com.BiblioSpring.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pelicula{
@@ -18,7 +21,27 @@ public class Pelicula{
 	private Integer ano;
 	@Column
 	private String lugarPublicacion;
+	@Column(name = "fechaPrestamo")
+	private String fechaPrestamo;
 	
+	public String getFechaPrestamo() {
+		return fechaPrestamo;
+	}
+
+	public void setFechaPrestamo(String fechaPrestamo) {
+		this.fechaPrestamo = fechaPrestamo;
+	}
+
+	@ManyToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Pelicula() {
 		super();

@@ -146,7 +146,7 @@ public class LibroController {
 	@RequestMapping("/BiblioSpring/Libro/ver_libro")
 	public String verFanzinePorNombre(Model model, HttpServletRequest request, @RequestParam String nombre,HttpSession usuario) {
 
-		Libro l1=repository.findByNombre(nombre).get();
+		Libro l1=repository.findByNombre(nombre);
 		if(l1==null) {
 			if(usuario.getAttribute("registered") == null) {
 				usuario.setAttribute("registered", false);		
@@ -166,7 +166,7 @@ public class LibroController {
 			// model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			// model.addAttribute("user", request.isUserInRole("USER"));
 
-			return "Libro";
+			return "Pagina_Error";
 		}else {
 		model.addAttribute("libros",l1);
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));

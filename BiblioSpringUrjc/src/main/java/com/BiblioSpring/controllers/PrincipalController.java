@@ -154,7 +154,7 @@ public class PrincipalController {
 		model.addAttribute("Libro", repositoryLibro.findAll());
 		return "Categoria";
 	}
-
+	// ----------------------------- FIN PERFIL DE USUARIO ----------------------------
 	@RequestMapping("/BiblioSpring/Alternativa")
 	public String Alternativas(Model model, HttpServletRequest request, HttpSession usuario) {
 		if (usuario.getAttribute("registered") == null) {
@@ -174,26 +174,6 @@ public class PrincipalController {
 		// model.addAttribute("user", request.isUserInRole("USER"));
 
 		return "Alternativa";
-	}
-
-	@RequestMapping("/BiblioSpring/Prestamo")
-	public String Prestamo(Model model, HttpServletRequest request, HttpSession usuario) {
-		if (usuario.getAttribute("registered") == null) {
-			usuario.setAttribute("registered", false);
-
-		}
-		if (usuario.getAttribute("admin") != null) {
-			model.addAttribute("admin", usuario.getAttribute("admin"));
-		}
-		model.addAttribute("registered", usuario.getAttribute("registered"));
-		boolean aux = !(Boolean) usuario.getAttribute("registered");
-		model.addAttribute("unregistered", aux);
-		model.addAttribute("Prestamo", repositoryContacto.findAll());
-
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
-
-		return "Prestamo";
 	}
 
 	@RequestMapping("/BiblioSpring/Contacto")

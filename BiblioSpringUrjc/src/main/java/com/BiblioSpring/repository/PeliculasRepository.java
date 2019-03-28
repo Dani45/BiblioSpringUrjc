@@ -10,6 +10,6 @@ import com.BiblioSpring.entity.Pelicula;
 
 
 public interface PeliculasRepository extends JpaRepository<Pelicula, Long>, CrudRepository<Pelicula,Long> {
-	Optional<Pelicula> findByNombre(String nombre);
+	Pelicula findByNombre(String nombre);
 	Optional<Pelicula> deleteByNombre(String nombre);
 }

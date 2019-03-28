@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,11 +32,35 @@ public class Libro {
 	private String lugarPublicacion;
 	@Column(name = "fechaPublicacion")
 	private String fechaPublicacion;
+	@Column(name = "fechaPrestamo")
+	private String fechaPrestamo;
+
+	public String getFechaPrestamo() {
+		return fechaPrestamo;
+	}
+
+
+	public void setFechaPrestamo(String fechaPrestamo) {
+		this.fechaPrestamo = fechaPrestamo;
+	}
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "libro_categoria", joinColumns = { @JoinColumn(name = "idLibro") }, inverseJoinColumns = {
 			@JoinColumn(name = "idCategoria") })
 	private List<Categoria> categorias = new ArrayList<>();
+	
+	@ManyToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	/**
 	 * 

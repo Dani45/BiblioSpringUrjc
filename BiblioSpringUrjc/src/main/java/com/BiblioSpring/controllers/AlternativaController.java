@@ -63,7 +63,11 @@ public class AlternativaController {
 			boolean aux = !(Boolean) usuario.getAttribute("registered");
 			model.addAttribute("unregistered", aux);
 		if(valor==2) {
-			model.addAttribute("Revista",repositoryRevista.findByNombre(nombre).get());
+			Revista r=repositoryRevista.findByNombre(nombre);
+			if(r==null) {
+				return "Pagina_Error";
+			}
+			model.addAttribute("Revista",r);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
 
@@ -72,14 +76,22 @@ public class AlternativaController {
 			
 		}
 		if(valor==3) {
-			model.addAttribute("pelicula",repositoryPelicula.findByNombre(nombre).get());
+			Pelicula p=repositoryPelicula.findByNombre(nombre);
+			if(p==null) {
+				return "Pagina_Error";
+			}
+			model.addAttribute("pelicula",p);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
 
 			return "ver_Pelicula";
 		}
 		if(valor==4) {
-			model.addAttribute("fanzine",repositoryFanzine.findByNombre(nombre).get());
+			Fanzine f=repositoryFanzine.findByNombre(nombre);
+			if(f==null) {
+				return "Pagina_Error";
+			}
+			model.addAttribute("fanzine",f);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
 
