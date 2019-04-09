@@ -243,6 +243,9 @@ public class PrincipalController {
 			model.addAttribute("registered", usuario.getAttribute("registered"));
 			boolean aux = !(Boolean) usuario.getAttribute("registered");
 			model.addAttribute("unregistered", aux);
+			model.addAttribute("Libro", repositoryLibro.findAll());
+			model.addAttribute("Categoria", repositoryCategoria.findAll());
+			model.addAttribute("Prestamo", repositoryContacto.findAll());
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 
@@ -262,7 +265,7 @@ public class PrincipalController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 
-		return "/Logout";
+		return "Logout";
 	}
 
 	@RequestMapping("/BiblioSpring/Fanzine")
