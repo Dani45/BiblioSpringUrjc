@@ -166,15 +166,15 @@
 
 **_Comandos Extras:_**
 
-	**Parar contenedores:**  sudo docker stop <nombre imagen>
-	**Listar contendores:** sudo docker images
-	**Inspeccionar un contenedor:** sudo docker inspect <nombre_imagen>
-	**Eliminar imagen:** sudo docker rmi -f <nombre_imagen>
-	**Ver contenido de imagen:** sudo Docker tun -it imagen_name sh
-	**Imagen en ejecución:** sudo Docker ps -a
-	**Conectar con un contenedor en ejecución:** sudo docker exec -i -t <ID_IMAGEN> /bin/bash
-	**Build Docker-compose:** sudo docker-compose build
-	**Detener docker-compose:** sudo docker-compose down
-	**Detener docker-compose  eliminar volúmenes:**  sudo Docker-compose down -v 
-	**Ver Docker-compose:**   sudo Docker-compose ps 
-	**Reset iptables:**  sudo systemctl restart docker  
+- **Parar contenedores:** `sudo docker stop <nombre imagen>`
+- **Listar contendores:** `sudo docker images`
+- **Inspeccionar un contenedor:** `sudo docker inspect <nombre_imagen>`
+- **Eliminar imagen:** `sudo docker rmi -f <nombre_imagen>`
+- **Ver contenido de imagen:** `sudo Docker tun -it imagen_name sh`
+- **Imagen en ejecución:** `sudo Docker ps -a`
+- **Conectar con un contenedor en ejecución:** `sudo docker exec -i -t <ID_IMAGEN> /bin/bash`
+- **Build Docker-compose:** `sudo docker-compose build`
+- **Detener docker-compose:** `sudo docker-compose down`
+- **Detener docker-compose eliminar volúmenes:**  `sudo Docker-compose down -v` 
+- **Ver Docker-compose:** `sudo Docker-compose ps `
+- **Reset iptables:**  `sudo systemctl restart docker ` 
