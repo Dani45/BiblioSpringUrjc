@@ -103,8 +103,7 @@
 	- mkdir /home/ubuntu/shared
 	- sudo mount -t vboxsf shared /home/ubuntu/shared
 	
-
-   ![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/red.png?token=AXgZXtmVABrcwcrSsqVcMIEGZkR0pE2Yks5ctk1kwA%3D%3D) 
+![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/red.png?token=AXgZXpZFZg2PnhD-uIGKqR3iD6uQ3mNDks5ctk7wwA%3D%3D)
 
 ***Para ejecutar las Aplicaciones***
 
