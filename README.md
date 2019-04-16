@@ -69,7 +69,10 @@
  - Descargamos VirtualBox  e instalamos.
  - Ir a configuración en virtual box. En red se debe de cambiar a (**adaptador de puente**) y en permitir (**permita todo**).
 
+   ![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/conf.png?token=AXgZXivDSk95eP71ggg-DFSXnEXvMFomks5ctk1iwA%3D%3D)
+ 
  - Descargar Ubuntu-16.04.6-server-amd64.
+ 
 
 **Extras para virtualBox**
 		
@@ -99,6 +102,9 @@
 	- sudo apt-get install virtualbox-guest-x11
 	- mkdir /home/ubuntu/shared
 	- sudo mount -t vboxsf shared /home/ubuntu/shared
+	
+
+   ![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/red.png?token=AXgZXtmVABrcwcrSsqVcMIEGZkR0pE2Yks5ctk1kwA%3D%3D) 
 
 ***Para ejecutar las Aplicaciones***
 
