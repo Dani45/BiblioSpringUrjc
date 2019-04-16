@@ -56,44 +56,56 @@
 <li>Alternativa: Consulta los fanzines, revistas y películas que hay en la biblioteca. </li>
 
 **Instrucciones precisas para desplegar la aplicación:**
-<li> Compilación: 
-      1. Botón derecho sobre el proyecto. 
-      2. Clickar sobre 'Run as'
-      3. Clickar sobre Spring Boot Application</li>
-<li> Cómo subir el .JAR:  
-      1. En consola, escribir 'svn clean'
-      2. En consola, escribir 'svn install'
-      3. En consola, escribir 'java -jar executableJar.jar'</li>
-<li> ¿Qué hace falta instalar?: Eclipse STS 4, Java 8, MySQL Workbench 8.0 y VirtualBox </li>
 
-<p>Virtualizacion</p
-      <p>creamos una carperta en home:</p
-      <li>sudo mkdir compartida</>
+**Compilación:**
+<ul>
+      <li>1. Botón derecho sobre el proyecto. </li>
+      <li>2. Clickar sobre 'Run as' </li>
+      <li>3. Clickar sobre Spring Boot Application</li>
+</ul>
 
- <li>donde esta carpeta sera nuestra carpeta compartida donde pondremos nuestros archivos. </li>
- <li>sudo mount -t vboxsf shared /home/ </li>
-<p>instalamos java:</p>
+**Virtualizacion**
 
- <li>sudo  apt install  </li>
- <li>sudo apt-get install -y openjdk-8-jdk </li>
+**Comandos necesarios para instalar *MySQL* y poner en marca**
+ - Descargamos VirtualBox  e instalamos.
+ - Ir a configuración en virtual box. En red se debe de cambiar a (**adaptador de puente**) y en permitir (**permita todo**).
 
-<p>instalamos mysql</p>
+ - Descargar Ubuntu-16.04.6-server-amd64.
 
- <li>sudo apt-get install mysql-server </li>
+**Extras para virtualBox**
+		
+	  - necesitamos instalar jdk y jre versión 8 	 
+	  - sudo apt-get install -y openjdk-8-jdk
+	  - sudo apt-get install -y openjdk-8-jre
 
-<p>creamos la base de datos y el nombre de nuestra base de datos</p>
+ 
+  **Instalamos *MySQL* por terminal.**
 
-<li>sudo mysql</li>
+	  - sudo apt-get update
+	  - sudo apt-get install mysql-server (cuando instalamos mysql nos pide la contraseña)
+	  - cambiamos la contraseña de MySQL
+	  - mysql -u root (si lo hacemos por primera vez)
+	  - UPDATE mysql.user SET authentication_string=PASSWORD(‘123456’) WHERE User='root';
+	  - FLUSH PRIVILEGES;
+	  - salimos de mysql y volvemos a iniciar con la contraseña creada.
 
-<p>creamos un usuario root</p>
+**Creamos la base de datos en *MySQL***
 
-<li>create user 'root'@'127.0.0.1';</li>
+	- create database bibliospringdb;
+	- show databases; (para mirar las bases de datos existentes)
+	- select user,host,authentication_string from mysql.user (para ver si se ha cambiado o no la contraseña por defecto)
 
-<p>modificamos la contraseña de la base de datos</p>
-<li>alter mysql.user 'root'@'localhost' identified with mysql_native_password by '123456';</li>
-<p>y ejecutamos los jar</p>
-<p>sudo java -jar BiblioSpringUrjc-0.0.1-SNAPSHOT &</p>
-<p>sudo java -jar Servicio_interno-0.0.1-SNAPSHOT  &</p>
+**Crear carpeta local para compartir con *Windows*.**
+	
+	- sudo apt-get install virtualbox-guest-x11
+	- mkdir /home/ubuntu/shared
+	- sudo mount -t vboxsf shared /home/ubuntu/shared
+
+***Para ejecutar las Aplicaciones***
+
+	- sudo java -jar BiblioSpringUrjc-0.0.1-SNAPSHOT &
+	- sudo java -jar Servicio_interno-0.0.1-SNAPSHOT &
+
 
 
 
