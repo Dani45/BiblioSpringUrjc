@@ -30,7 +30,6 @@
 
 **Integrantes del equipo de desarrollo:**
 <ul>
-<li> Agustín López Gil - a.lopezgi.2016@alumnos.urjc.es - agustinlopezg</li>
 <li> Chengjian Li - c.li3.2016@alumnos.urjc.es - Oscarli1797</li>
 <li> Fausto Daniel Luje Condor - fd.luje.2018@alumnos.urjc.es - Dani45</li>
 </ul>
