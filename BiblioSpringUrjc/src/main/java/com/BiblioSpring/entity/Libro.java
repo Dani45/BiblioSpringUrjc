@@ -12,9 +12,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+@Transactional
 @Entity
 @Table(name = "Libros")
 public class Libro {
@@ -47,7 +48,7 @@ public class Libro {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "libro_categoria", joinColumns = { @JoinColumn(name = "idLibro") }, inverseJoinColumns = {
 			@JoinColumn(name = "idCategoria") })
-	private List<Categoria> categorias = new ArrayList<>();
+	private List<Categoria> categorias = new ArrayList<Categoria>();
 	
 	@ManyToOne
 	private User user;

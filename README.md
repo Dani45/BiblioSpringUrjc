@@ -56,44 +56,14 @@
 <li>Alternativa: Consulta los fanzines, revistas y películas que hay en la biblioteca. </li>
 
 **Instrucciones precisas para desplegar la aplicación:**
-<li> Compilación: 
-      1. Botón derecho sobre el proyecto. 
-      2. Clickar sobre 'Run as'
-      3. Clickar sobre Spring Boot Application</li>
-<li> Cómo subir el .JAR:  
-      1. En consola, escribir 'svn clean'
-      2. En consola, escribir 'svn install'
-      3. En consola, escribir 'java -jar executableJar.jar'</li>
-<li> ¿Qué hace falta instalar?: Eclipse STS 4, Java 8, MySQL Workbench 8.0 y VirtualBox </li>
 
-<p>Virtualizacion</p
-      <p>creamos una carperta en home:</p
-      <li>sudo mkdir compartida</>
+**Compilación:**
+<ul>
+      <li>1. Botón derecho sobre el proyecto. </li>
+      <li>2. Clickar sobre 'Run as' </li>
+      <li>3. Clickar sobre Spring Boot Application</li>
+</ul>
 
- <li>donde esta carpeta sera nuestra carpeta compartida donde pondremos nuestros archivos. </li>
- <li>sudo mount -t vboxsf shared /home/ </li>
-<p>instalamos java:</p>
-
- <li>sudo  apt install  </li>
- <li>sudo apt-get install -y openjdk-8-jdk </li>
-
-<p>instalamos mysql</p>
-
- <li>sudo apt-get install mysql-server </li>
-
-<p>creamos la base de datos y el nombre de nuestra base de datos</p>
-
-<li>sudo mysql</li>
-
-<p>creamos un usuario root</p>
-
-<li>create user 'root'@'127.0.0.1';</li>
-
-<p>modificamos la contraseña de la base de datos</p>
-<li>alter mysql.user 'root'@'localhost' identified with mysql_native_password by '123456';</li>
-<p>y ejecutamos los jar</p>
-<p>sudo java -jar BiblioSpringUrjc-0.0.1-SNAPSHOT &</p>
-<p>sudo java -jar Servicio_interno-0.0.1-SNAPSHOT  &</p>
-
+**Virtualizacion**
 
 

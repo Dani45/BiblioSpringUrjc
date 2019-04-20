@@ -14,9 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+@Transactional
 @Entity
 @Table(name = "user")
 public class User {
@@ -30,7 +31,7 @@ public class User {
 	private String passwordHash;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> roles;
+	private List<String> roles= new ArrayList<String>();
 	
 	@OneToMany(mappedBy="user")
 	private List<Libro> libros = new ArrayList<Libro>();
