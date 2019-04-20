@@ -91,8 +91,8 @@ public class LibroController {
 
 	@GetMapping("/BiblioSpring/Libro/nuevo")
 	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
-			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
-			Categoria categorias, Libro libros2, HttpServletRequest request, HttpSession usuario) {
+			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion,
+			@RequestParam String area, HttpServletRequest request, HttpSession usuario) {
 		if (usuario.getAttribute("registered") == null) {
 			usuario.setAttribute("registered", false);
 
@@ -110,14 +110,12 @@ public class LibroController {
 			Categoria cat = repository2.findByArea(area);
 			if (cat == null) {
 				System.out.println("categorias: " + cat);
-				cat = repository2.save(categorias);
+				cat=new Categoria(area);
+				repository2.save(cat);
 			}
 			Libro libros = new Libro(nombre, autor, lugarPublicacion, fechaPublicacion, cat);
-
 			System.out.println("categorias: " + cat);
-
 			repository.save(libros);
-			repository.save(libros2);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
 
@@ -126,7 +124,7 @@ public class LibroController {
 			e.printStackTrace();
 		}
 
-		return "Index";
+		return "Libro";
 
 	}
 

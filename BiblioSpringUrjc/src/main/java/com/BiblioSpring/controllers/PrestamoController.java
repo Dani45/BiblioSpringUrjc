@@ -115,7 +115,7 @@ public class PrestamoController {
 
 		}
 		if(valor==5) {
-			Libro l=repositoryLibro.findByNombre(name);
+			Libro l=repositoryLibro.findByNombre(nombre);
 			if(l==null) {
 				return "Pagina_Error";
 			}

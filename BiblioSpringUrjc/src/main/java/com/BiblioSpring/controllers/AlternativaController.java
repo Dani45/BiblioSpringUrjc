@@ -102,8 +102,6 @@ public class AlternativaController {
 	}
 	@RequestMapping("/BiblioSpring/Pelicula/AddPelicula")
 	public String AnadirPelicula(Model model, Pageable page,HttpServletRequest request) {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
 		return "AddPelicula";
 	}
 
@@ -124,7 +122,7 @@ public class AlternativaController {
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
 
-		return "Index";
+		return "Alternativa";
 
 	}
 	
@@ -205,7 +203,7 @@ public class AlternativaController {
 		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
-		return "Index";
+		return "Alternativa";
 		}
 
 	
@@ -263,7 +261,7 @@ public class AlternativaController {
 		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
-		return "Index";
+		return "Alternativa";
 	}
 	
 
