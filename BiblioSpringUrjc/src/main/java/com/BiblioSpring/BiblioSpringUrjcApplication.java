@@ -41,7 +41,7 @@ public class BiblioSpringUrjcApplication {
 
 	@Bean
 	public CacheManager cacheManager() {
-		LOG.info("Activating cache...");
+		LOG.info("Activacion para la cache...");
 		return new ConcurrentMapCacheManager("BiblioSpring");
 	}
 }
