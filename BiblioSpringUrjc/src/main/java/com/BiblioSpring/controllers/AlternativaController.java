@@ -121,8 +121,9 @@ public class AlternativaController {
 		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
+		model.addAttribute("pelicula",repositoryPelicula.findAll());
 
-		return "Alternativa";
+		return "ver_Pelicula";
 
 	}
 	
@@ -136,9 +137,9 @@ public class AlternativaController {
 	
 	@Transactional
 	@RequestMapping("/BiblioSpring/Pelicula/Pelicula_borrada")
-	public String peliculaBorrada(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre, Pelicula pelicula) {
+	public String peliculaBorrada(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre) {
 
-		 repositoryPelicula.deleteByNombre(nombre);
+		repositoryPelicula.deleteByNombre(nombre);
 		if (usuario.getAttribute("registered") == null) {
 			usuario.setAttribute("registered", false);
 
@@ -151,8 +152,9 @@ public class AlternativaController {
 		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
+		model.addAttribute("pelicula",repositoryPelicula.findAll());
 
-		return "Index";
+		return "ver_Pelicula";
 	}
 	@Transactional
 	@RequestMapping("/BiblioSpring/Revista/DeleteRevista")
@@ -164,23 +166,23 @@ public class AlternativaController {
 	
 	@Transactional
 	@RequestMapping("/BiblioSpring/Revista/Revista_borrada")
-	public String revistaBorrada(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre, Revista revista) {
+	public String revistaBorrada(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre) {
 
 		 repositoryRevista.deleteByNombre(nombre);
-		if (usuario.getAttribute("registered") == null) {
-			usuario.setAttribute("registered", false);
+		 if (usuario.getAttribute("registered") == null) {
+				usuario.setAttribute("registered", false);
 
-		}
-		if (usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);
+			}
+			if (usuario.getAttribute("admin") != null) {
+				usuario.setAttribute("admin", true);
 
-		}
-		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
-		boolean aux = !(Boolean) usuario.getAttribute("registered");
-		model.addAttribute("unregistered", aux);
-
-		return "Index";
+			}
+			model.addAttribute("registered", usuario.getAttribute("registered"));
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", aux);
+			model.addAttribute("Revista",repositoryRevista.findAll());
+			return "ver_Revista";
 		}
 	
 	@RequestMapping("/BiblioSpring/Revista/AddRevista")
@@ -203,7 +205,8 @@ public class AlternativaController {
 		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
-		return "Alternativa";
+		model.addAttribute("Revista",repositoryRevista.findAll());
+		return "ver_Revista";
 		}
 
 	
@@ -217,23 +220,23 @@ public class AlternativaController {
 	
 	@Transactional
 	@RequestMapping("/BiblioSpring/Fanzine/Fanzine_borrado")
-	public String fanzineBorrado(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre, Fanzine fanzine) {
+	public String fanzineBorrado(Model model, HttpServletRequest request,HttpSession usuario, @RequestParam String nombre) {
 
 		 repositoryFanzine.deleteByNombre(nombre);
-		if (usuario.getAttribute("registered") == null) {
-			usuario.setAttribute("registered", false);
+		 if (usuario.getAttribute("registered") == null) {
+				usuario.setAttribute("registered", false);
 
-		}
-		if (usuario.getAttribute("admin") != null) {
-			usuario.setAttribute("admin", true);
+			}
+			if (usuario.getAttribute("admin") != null) {
+				usuario.setAttribute("admin", true);
 
-		}
-		model.addAttribute("registered", usuario.getAttribute("registered"));
-		model.addAttribute("admin", usuario.getAttribute("admin"));
-		boolean aux = !(Boolean) usuario.getAttribute("registered");
-		model.addAttribute("unregistered", aux);
-
-		return "Index";
+			}
+			model.addAttribute("registered", usuario.getAttribute("registered"));
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+			boolean aux = !(Boolean) usuario.getAttribute("registered");
+			model.addAttribute("unregistered", aux);
+			model.addAttribute("fanzine",repositoryFanzine.findAll());
+			return "ver_Fanzine";
 		}
 	
 	
@@ -261,7 +264,8 @@ public class AlternativaController {
 		model.addAttribute("admin", usuario.getAttribute("admin"));
 		boolean aux = !(Boolean) usuario.getAttribute("registered");
 		model.addAttribute("unregistered", aux);
-		return "Alternativa";
+		model.addAttribute("fanzine",repositoryFanzine.findAll());
+		return "ver_Fanzine";
 	}
 	
 

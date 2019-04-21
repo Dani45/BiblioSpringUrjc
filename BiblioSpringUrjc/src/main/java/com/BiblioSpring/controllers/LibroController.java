@@ -118,13 +118,15 @@ public class LibroController {
 			repository.save(libros);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 			model.addAttribute("user", request.isUserInRole("USER"));
+			model.addAttribute("Libro", repository.findAll());
+			model.addAttribute("Categoria", repository2.findAll());
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 
-		return "Libro";
+		return "Index";
 
 	}
 
@@ -133,8 +135,20 @@ public class LibroController {
 	// @RequestMapping("/Libro/{idLibro}")
 
 	@GetMapping("/BiblioSpring/Libro/{idLibro}")
-	public String verIndependiente(Model model, @PathVariable long idLibro, HttpServletRequest request) {
+	public String verIndependiente(Model model, @PathVariable long idLibro, HttpServletRequest request,HttpSession usuario) {
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
 
+		}
+		if (usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		} else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
 		model.addAttribute("libros", repository.findById(idLibro).get());
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("user", request.isUserInRole("USER"));

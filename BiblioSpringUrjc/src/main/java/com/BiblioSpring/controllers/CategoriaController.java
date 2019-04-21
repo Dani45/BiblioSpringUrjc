@@ -1,6 +1,7 @@
 package com.BiblioSpring.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.BiblioSpring.entity.Categoria;
 import com.BiblioSpring.entity.Libro;
 import com.BiblioSpring.repository.CategoriasRepository;
+import com.BiblioSpring.repository.LibrosRepository;
 
 @Controller
 public class CategoriaController {
 	@Autowired
 	private CategoriasRepository repository;
+	@Autowired
+	private LibrosRepository repository2;
 
 	public Libro libros;
 
@@ -59,11 +63,23 @@ public class CategoriaController {
 		return "delete_borrado";
 	}
 	@GetMapping("/BiblioSpring/Categoria/{idCategoria}")
-	public String verIndependiente(Model model, @PathVariable long idCategoria, HttpServletRequest request) {
-		model.addAttribute("categorias", repository.findById(idCategoria).get());
-		model.addAttribute("libros", repository.findAll());
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+	public String verIndependiente(Model model, @PathVariable long idCategoria, HttpServletRequest request,HttpSession usuario) {
+		if (usuario.getAttribute("registered") == null) {
+			usuario.setAttribute("registered", false);
+
+		}
+		if (usuario.getAttribute("admin") == null) {
+			model.addAttribute("noadmin", true);
+		} else {
+			model.addAttribute("admin", usuario.getAttribute("admin"));
+		}
+		model.addAttribute("registered", usuario.getAttribute("registered"));
+
+		boolean aux = !(Boolean) usuario.getAttribute("registered");
+		model.addAttribute("unregistered", aux);
+		model.addAttribute("Categoria", repository.findById(idCategoria).get());
+		model.addAttribute("Libro", repository2.findAll());
+		
 
 		return "categoriabd";
 	}

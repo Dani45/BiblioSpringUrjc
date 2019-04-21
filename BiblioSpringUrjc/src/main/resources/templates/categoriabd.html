@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!-- Page Title -->
-<title>Categoria</title>
+<title>{{Categoria.area}}</title>
 
 <!-- Logo -->
 <link rel="shortcut icon" href="/assets/images/logo/urjclogo.png"
@@ -49,13 +49,15 @@
 							<li><a href="/BiblioSpring/Libro">Libro</a></li>
 							<li><a href="/BiblioSpring/Categoria">Categoria</a></li>
 							<li><a href="/BiblioSpring/Alternativa">Alternativas</a></li>
+							{{#noadmin}}
 							<li><a href="/BiblioSpring/Prestamo">Prestamo</a></li>
+							{{/noadmin}}
 							<li><a href="/BiblioSpring/Contacto">Contacto</a></li>
 							{{#unregistered}}
 							<li class="menu-btn"><a href="/BiblioSpring/Login"
 								class="login">Ingresar</a></li> {{/unregistered}} {{#registered}}
-							<li class="menu-btn"><a href="/BiblioSpring/Logout"
-								class="login">Salir</a></li> {{/registered}} {{#admin}}
+							<li class="menu-btn"><a href="/BiblioSpring/profile"
+								class="login">Perfil</a></li> {{/registered}} {{#admin}}
 							<li><a href="/BiblioSpring/Administrador">Admin</a></li>
 							{{/admin}}
 						</ul>
@@ -66,32 +68,38 @@
 	</header>
 	<!-- Header Area End -->
 
+	<!-- Feature Area Starts -->
 	<div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-		<table class="table table-bordered table-striped mb-6">
+		<table class="table table-bordered table-striped mb-0">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					
-
+					<th scope="col">Nombre</th>
+					<th scope="col">Autor</th>
+					<th scope="col">Area</th>
 				</tr>
 			</thead>
 			<tbody>
-				{{#categorias}}
+				{{#Libro}}{{#Categoria}}
 				<tr>
+
+					<th scope="row"><a href="/BiblioSpring/Libro/{{idLibro}}">
+							{{idLibro}} </a></th>
+					<td>{{nombre}}</td>
+					<td>{{autor}}</td>
 					<td>{{area}}</td>
-					
+
+				</tr>
+				{{/Categoria}}{{/Libro}}
 
 
 				</tr>
-				{{/categorias}}
-
 			</tbody>
 		</table>
-		<p>
-			<a href="/">Volver al Principio</a>
-		</p>
+
 	</div>
+	<!-- Seccion para Hacerse socio de la biblio terminada -->
 
 
 	<!-- Footer Area Starts -->
