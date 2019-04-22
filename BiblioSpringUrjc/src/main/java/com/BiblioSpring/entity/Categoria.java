@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Transactional
 @Entity
 @Table(name = "categorias")
@@ -24,6 +27,7 @@ public class Categoria {
 	private String area;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "categorias")
+	@JsonIgnore
 	private List<Libro> libros = new ArrayList<Libro>();
 
 	/**

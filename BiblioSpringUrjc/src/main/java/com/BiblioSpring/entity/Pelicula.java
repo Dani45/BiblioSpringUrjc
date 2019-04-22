@@ -1,8 +1,5 @@
 package com.BiblioSpring.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.transaction.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Transactional
 @Entity
-public class Pelicula{
+public class Pelicula {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPelicula;
@@ -24,7 +24,7 @@ public class Pelicula{
 	private String lugarPublicacion;
 	@Column(name = "fechaPrestamo")
 	private String fechaPrestamo;
-	
+
 	public String getFechaPrestamo() {
 		return fechaPrestamo;
 	}
@@ -34,6 +34,7 @@ public class Pelicula{
 	}
 
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 
 	public User getUser() {
@@ -58,10 +59,8 @@ public class Pelicula{
 
 	@Override
 	public String toString() {
-		return "Fanzine [nombre=" + nombre + ", ano=" + ano +  ", lugarPublicacion="
-				+ lugarPublicacion + "]";
+		return "Fanzine [nombre=" + nombre + ", ano=" + ano + ", lugarPublicacion=" + lugarPublicacion + "]";
 	}
-
 
 	public Long getIdPelicula() {
 		return idPelicula;
@@ -79,8 +78,6 @@ public class Pelicula{
 		this.nombre = nombre;
 	}
 
-	
-
 	public String getLugarPublicacion() {
 		return lugarPublicacion;
 	}
@@ -96,6 +93,5 @@ public class Pelicula{
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-
 
 }

@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.transaction.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Transactional
 @Entity
 public class Revista {
@@ -21,7 +24,7 @@ public class Revista {
 	private Integer ano;
 	@Column(name = "fechaPrestamo")
 	private String fechaPrestamo;
-	
+
 	public String getFechaPrestamo() {
 		return fechaPrestamo;
 	}
@@ -31,6 +34,7 @@ public class Revista {
 	}
 
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 
 	public User getUser() {

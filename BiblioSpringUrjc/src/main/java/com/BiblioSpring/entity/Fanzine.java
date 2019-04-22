@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.transaction.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Transactional
 @Entity
 public class Fanzine {
@@ -23,6 +26,7 @@ public class Fanzine {
 	private String lugarPublicacion;
 	@Column(name = "fechaPrestamo")
 	private String fechaPrestamo;
+
 	public String getFechaPrestamo() {
 		return fechaPrestamo;
 	}
@@ -32,6 +36,7 @@ public class Fanzine {
 	}
 
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 
 	public User getUser() {
@@ -47,15 +52,13 @@ public class Fanzine {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Fanzine(String nombre, Integer ano,Integer numero, String lugarPublicacion) {
+	public Fanzine(String nombre, Integer ano, Integer numero, String lugarPublicacion) {
 		super();
 		this.nombre = nombre;
 		this.ano = ano;
 		this.numero = numero;
 		this.lugarPublicacion = lugarPublicacion;
 	}
-
-	
 
 	@Override
 	public String toString() {
@@ -87,8 +90,6 @@ public class Fanzine {
 		this.ano = ano;
 	}
 
-	
-
 	public Integer getNumero() {
 		return numero;
 	}
@@ -104,6 +105,5 @@ public class Fanzine {
 	public void setLugarPublicacion(String lugarPublicacion) {
 		this.lugarPublicacion = lugarPublicacion;
 	}
-
 
 }

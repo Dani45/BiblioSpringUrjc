@@ -154,7 +154,9 @@ public class PrincipalController {
 		model.addAttribute("Libro", repositoryLibro.findAll());
 		return "Categoria";
 	}
-	// ----------------------------- FIN PERFIL DE USUARIO ----------------------------
+
+	// ----------------------------- FIN PERFIL DE USUARIO
+	// ----------------------------
 	@RequestMapping("/BiblioSpring/Alternativa")
 	public String Alternativas(Model model, HttpServletRequest request, HttpSession usuario) {
 		if (usuario.getAttribute("registered") == null) {
@@ -271,7 +273,7 @@ public class PrincipalController {
 	@RequestMapping("/BiblioSpring/Fanzine")
 	public String Fanzine(Model model, HttpServletRequest request, HttpSession usuario) {
 
-		model.addAttribute("fanzine",repositoryFanzine.findAll());
+		model.addAttribute("fanzine", repositoryFanzine.findAll());
 		if (usuario.getAttribute("registered") == null) {
 			usuario.setAttribute("registered", false);
 
