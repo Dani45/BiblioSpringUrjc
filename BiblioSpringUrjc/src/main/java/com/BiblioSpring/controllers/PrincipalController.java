@@ -58,7 +58,7 @@ public class PrincipalController {
 			boolean aux = !(Boolean) usuario.getAttribute("registered");
 			model.addAttribute("unregistered", usuario.getAttribute("registered"));
 			model.addAttribute("registered", aux);
-			String url = "http://sv:8000/mail/";
+			String url = "http://sv:8071/mail/";
 			Email nuevoEmail = new Email(name, email);
 			RestTemplate rest = new RestTemplate();
 			rest.postForEntity(url, nuevoEmail, String.class);
