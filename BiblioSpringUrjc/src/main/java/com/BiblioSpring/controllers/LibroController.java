@@ -21,7 +21,7 @@ import com.BiblioSpring.repository.LibrosRepository;
 
 @Controller
 public class LibroController {
-	
+
 	@Autowired
 	private LibrosRepository repository;
 	@Autowired
@@ -68,7 +68,6 @@ public class LibroController {
 		repository2.save(c3);
 	}
 
-
 	@RequestMapping("/BiblioSpring/Libro/AddLibro")
 	public String AnadirLibro(Model model, Pageable page, HttpServletRequest request) {
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -91,8 +90,8 @@ public class LibroController {
 
 	@GetMapping("/BiblioSpring/Libro/nuevo")
 	public String nuevoLibro(Model model, @RequestParam String nombre, @RequestParam String autor,
-			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion,
-			@RequestParam String area, HttpServletRequest request, HttpSession usuario) {
+			@RequestParam String lugarPublicacion, @RequestParam String fechaPublicacion, @RequestParam String area,
+			HttpServletRequest request, HttpSession usuario) {
 		if (usuario.getAttribute("registered") == null) {
 			usuario.setAttribute("registered", false);
 
@@ -110,7 +109,7 @@ public class LibroController {
 			Categoria cat = repository2.findByArea(area);
 			if (cat == null) {
 				System.out.println("categorias: " + cat);
-				cat=new Categoria(area);
+				cat = new Categoria(area);
 				repository2.save(cat);
 			}
 			Libro libros = new Libro(nombre, autor, lugarPublicacion, fechaPublicacion, cat);
@@ -135,7 +134,8 @@ public class LibroController {
 	// @RequestMapping("/Libro/{idLibro}")
 
 	@GetMapping("/BiblioSpring/Libro/{idLibro}")
-	public String verIndependiente(Model model, @PathVariable long idLibro, HttpServletRequest request,HttpSession usuario) {
+	public String verIndependiente(Model model, @PathVariable long idLibro, HttpServletRequest request,
+			HttpSession usuario) {
 		if (usuario.getAttribute("registered") == null) {
 			usuario.setAttribute("registered", false);
 
@@ -155,18 +155,20 @@ public class LibroController {
 
 		return "librodb";
 	}
-	@RequestMapping("/BiblioSpring/Libro/ver_libro")
-	public String verFanzinePorNombre(Model model, HttpServletRequest request, @RequestParam String nombre,HttpSession usuario) {
 
-		Libro l1=repository.findByNombre(nombre);
-		if(l1==null) {
-			if(usuario.getAttribute("registered") == null) {
-				usuario.setAttribute("registered", false);		
+	@RequestMapping("/BiblioSpring/Libro/ver_libro")
+	public String verFanzinePorNombre(Model model, HttpServletRequest request, @RequestParam String nombre,
+			HttpSession usuario) {
+
+		Libro l1 = repository.findByNombre(nombre);
+		if (l1 == null) {
+			if (usuario.getAttribute("registered") == null) {
+				usuario.setAttribute("registered", false);
 
 			}
-			if(usuario.getAttribute("admin") == null) {
+			if (usuario.getAttribute("admin") == null) {
 				model.addAttribute("noadmin", true);
-			}else {
+			} else {
 				model.addAttribute("admin", usuario.getAttribute("admin"));
 			}
 			model.addAttribute("registered", usuario.getAttribute("registered"));
@@ -179,14 +181,14 @@ public class LibroController {
 			// model.addAttribute("user", request.isUserInRole("USER"));
 
 			return "Pagina_Error";
-		}else {
-		model.addAttribute("libros",l1);
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("user", request.isUserInRole("USER"));
+		} else {
+			model.addAttribute("libros", l1);
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("user", request.isUserInRole("USER"));
 
-		return "ver_libro";
+			return "ver_libro";
 		}
-		
+
 	}
 
 }

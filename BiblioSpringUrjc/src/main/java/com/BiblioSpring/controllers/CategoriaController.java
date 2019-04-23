@@ -28,7 +28,7 @@ public class CategoriaController {
 
 	// añadir
 	@RequestMapping("/BiblioSpring/Categoria/AddCategoria")
-	public String Addcategoria(Model model, Pageable page,HttpServletRequest request) {
+	public String Addcategoria(Model model, Pageable page, HttpServletRequest request) {
 
 		model.addAttribute("categoria", repository.findAll(page));
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -62,8 +62,10 @@ public class CategoriaController {
 
 		return "delete_borrado";
 	}
+
 	@GetMapping("/BiblioSpring/Categoria/{idCategoria}")
-	public String verIndependiente(Model model, @PathVariable long idCategoria, HttpServletRequest request,HttpSession usuario) {
+	public String verIndependiente(Model model, @PathVariable long idCategoria, HttpServletRequest request,
+			HttpSession usuario) {
 		if (usuario.getAttribute("registered") == null) {
 			usuario.setAttribute("registered", false);
 
@@ -79,7 +81,6 @@ public class CategoriaController {
 		model.addAttribute("unregistered", aux);
 		model.addAttribute("Categoria", repository.findById(idCategoria).get());
 		model.addAttribute("Libro", repository2.findAll());
-		
 
 		return "categoriabd";
 	}

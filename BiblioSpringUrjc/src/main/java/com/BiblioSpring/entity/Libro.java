@@ -13,8 +13,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
 @Transactional
 @Entity
 @Table(name = "Libros")
@@ -36,32 +40,31 @@ public class Libro {
 	@Column(name = "fechaPrestamo")
 	private String fechaPrestamo;
 
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonIgnore
+	@JoinTable(name = "libro_categoria", joinColumns = { @JoinColumn(name = "idLibro") }, inverseJoinColumns = {
+			@JoinColumn(name = "idCategoria") })
+	private List<Categoria> categorias = new ArrayList<Categoria>();
+
+	@ManyToOne
+	@JsonIgnore
+	private User user;
+
 	public String getFechaPrestamo() {
 		return fechaPrestamo;
 	}
-
 
 	public void setFechaPrestamo(String fechaPrestamo) {
 		this.fechaPrestamo = fechaPrestamo;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "libro_categoria", joinColumns = { @JoinColumn(name = "idLibro") }, inverseJoinColumns = {
-			@JoinColumn(name = "idCategoria") })
-	private List<Categoria> categorias = new ArrayList<Categoria>();
-	
-	@ManyToOne
-	private User user;
-
 	public User getUser() {
 		return user;
 	}
 
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 	/**
 	 * 
@@ -71,7 +74,6 @@ public class Libro {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	/**
 	 * @param nombre
 	 * @param autor
@@ -85,7 +87,6 @@ public class Libro {
 		this.lugarPublicacion = lugarPublicacion;
 		this.fechaPublicacion = fechaPublicacion;
 	}
-
 
 	public Libro(String nombre, String autor, String lugarPublicacion, String fechaPublicacion, Categoria cat) {
 		super();

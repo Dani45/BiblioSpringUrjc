@@ -1,5 +1,8 @@
 package com.BiblioSpring.entity;
 
+import javax.transaction.Transactional;
+
+@Transactional
 public class Email {
 
 	private String userName;
