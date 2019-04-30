@@ -15,12 +15,14 @@ import javax.persistence.Table;
 import javax.transaction.Transactional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Transactional
 @Entity
 @Table(name = "user")
+@SessionScope
 public class User {
 
 	@Id

@@ -29,7 +29,6 @@ public class AlternativaController {
 	@Autowired
 	private RevistasRepository repositoryRevista;
 
-	@SuppressWarnings("deprecation")
 	@PostConstruct
 	public void init() {
 		repositoryFanzine.save(new Fanzine("OnePieze", 2000, 3, "Japon"));
