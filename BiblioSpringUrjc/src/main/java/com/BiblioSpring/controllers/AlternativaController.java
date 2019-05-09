@@ -28,7 +28,7 @@ public class AlternativaController {
 	private PeliculasRepository repositoryPelicula;
 	@Autowired
 	private RevistasRepository repositoryRevista;
-/*
+
 	@PostConstruct
 	public void init() {
 		repositoryFanzine.save(new Fanzine("OnePieze", 2000, 3, "Japon"));
@@ -38,7 +38,7 @@ public class AlternativaController {
 		repositoryPelicula.save(new Pelicula("La última canción", 2008, "Inglaterra"));
 		repositoryRevista.save(new Revista("Pronto", 1964, 1));
 	}
-*/
+
 	@RequestMapping("/BiblioSpring/Alternativa/buscar_Alternativa")
 	public String verAlternativaPorNombre(Model model, HttpServletRequest request, @RequestParam int valor,
 			@RequestParam String nombre, HttpSession usuario) {

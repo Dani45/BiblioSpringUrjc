@@ -7,6 +7,8 @@ services:
     image: mysql:5.7
     ports: 
       - "3306:3306"
+    volumes:
+       - db_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_USER=root
@@ -24,6 +26,8 @@ services:
     image: web
     #ports:
     #  - "8080:8080"
+    depends_on: # El contenedor no iniciará hasta que db nos responda que ya se encuentra disponible
+      - db
     networks:
       movie-quote-network:
         aliases:
@@ -42,6 +46,8 @@ services:
     image: web1
     #ports:
     #  - "8081:8080"
+    depends_on: # El contenedor no iniciará hasta que db nos responda que ya se encuentra disponible
+      - db
     networks:
       movie-quote-network:
         aliases:
@@ -109,5 +115,8 @@ services:
     links:
       - sv1
       - sv2
+volumes:
+    db_data:
+
 networks:
   movie-quote-network:
