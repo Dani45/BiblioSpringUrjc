@@ -28,14 +28,10 @@ public class BiblioSpringUrjcApplication {
 
 	@Bean
 	public Config config() {
-
-		Config config = new Config();
-
+		Config config = new Config();/*
 		JoinConfig joinConfig = config.getNetworkConfig().getJoin();
-
 		joinConfig.getMulticastConfig().setEnabled(false);
-		joinConfig.getTcpIpConfig().setEnabled(true).setMembers(Collections.singletonList("127.0.0.1"));
-
+		joinConfig.getTcpIpConfig().setEnabled(true).setMembers(Collections.singletonList("127.0.0.1"));*/
 		return config;
 	}
 

@@ -18,13 +18,13 @@ public class ContactoController {
 
 	@Autowired
 	private ContactosRepository repository;
-
+/*
 	@PostConstruct
 	public void init() {
 		repository.save(new Contacto("Pepe", "Hola caracola", "XXXX", "eww"));
 		repository.save(new Contacto("Juan", "Hola caracola", "XXXX", "sdad"));
 	}
-
+*/
 	@RequestMapping("/BiblioSpring/nuevoContacto")
 	public String addcontacto(Model model, Pageable page, HttpServletRequest request) {
 

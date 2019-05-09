@@ -26,7 +26,7 @@ public class LibroController {
 	private LibrosRepository repository;
 	@Autowired
 	private CategoriasRepository repository2;
-
+/*
 	@PostConstruct
 	public void init() {
 		Libro l1 = new Libro("LA SOCIEDAD DE LOS SOÑADORES INVOLUNTARIOS", "AGUALUSA, JOSÉ EDUARDO", "Madrid",
@@ -67,7 +67,7 @@ public class LibroController {
 		repository2.save(c2);
 		repository2.save(c3);
 	}
-
+*/
 	@RequestMapping("/BiblioSpring/Libro/AddLibro")
 	public String AnadirLibro(Model model, Pageable page, HttpServletRequest request) {
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
