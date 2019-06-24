@@ -81,7 +81,7 @@
  - Descargamos VirtualBox  e instalamos.
  - Ir a configuración en virtual box. En red se debe de cambiar a (**adaptador de puente**) y en permitir (**permita todo**).
 
-   ![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/conf.png?token=AXgZXivDSk95eP71ggg-DFSXnEXvMFomks5ctk1iwA%3D%3D)
+![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/conf.png?token=AXgZXivDSk95eP71ggg-DFSXnEXvMFomks5ctk1iwA%3D%3D)
  
  - Descargar Ubuntu-16.04.6-server-amd64.
  
@@ -115,7 +115,7 @@
 	- mkdir /home/ubuntu/shared
 	- sudo mount -t vboxsf shared /home/ubuntu/shared
 	
-![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/red.png?token=AXgZXpZFZg2PnhD-uIGKqR3iD6uQ3mNDks5ctk7wwA%3D%3D)
+   ![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/red.png?token=AXgZXpZFZg2PnhD-uIGKqR3iD6uQ3mNDks5ctk7wwA%3D%3D)
 
 
 ***Para ejecutar las Aplicaciones***
@@ -177,4 +177,8 @@
 - **Detener docker-compose:** `sudo docker-compose down`
 - **Detener docker-compose eliminar volúmenes:**  `sudo Docker-compose down -v` 
 - **Ver Docker-compose:** `sudo Docker-compose ps `
-- **Reset iptables:**  `sudo systemctl restart docker ` 
+- **Reset iptables:**  `sudo systemctl restart docker `
+
+**_Video:_**
+
+https://www.youtube.com/watch?v=DavL4Aum1wI&feature=youtu.be
