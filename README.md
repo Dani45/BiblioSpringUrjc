@@ -81,7 +81,7 @@
  - Descargamos VirtualBox  e instalamos.
  - Ir a configuración en virtual box. En red se debe de cambiar a (**adaptador de puente**) y en permitir (**permita todo**).
 
-![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/conf.png?token=AXgZXivDSk95eP71ggg-DFSXnEXvMFomks5ctk1iwA%3D%3D)
+![MYSQL](https://github.com/Dani45/BiblioSpringUrjc/blob/master/conf.png?raw=true)
  
  - Descargar Ubuntu-16.04.6-server-amd64.
  
@@ -115,7 +115,9 @@
 	- mkdir /home/ubuntu/shared
 	- sudo mount -t vboxsf shared /home/ubuntu/shared
 	
-   ![UML](https://raw.githubusercontent.com/Dani45/BiblioSpringUrjc/master/red.png?token=AXgZXpZFZg2PnhD-uIGKqR3iD6uQ3mNDks5ctk7wwA%3D%3D)
+   ![RED](https://github.com/Dani45/BiblioSpringUrjc/blob/master/red.png?raw=true)
+
+
 
 
 ***Para ejecutar las Aplicaciones***
